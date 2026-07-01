@@ -31,17 +31,19 @@ skill's spacing scale, elevation, motion timing, breakpoints, a11y standards, an
 component templates as scaffolds (see §5).
 
 ### Design tokens
-> Color values below are **placeholders** — Phase 0 samples the real hex from the existing logo &
-> photos and replaces them (brand identity is being kept, not redesigned). Everything else
-> (spacing, elevation, motion, breakpoints) is adopted from the skill's `design-systems.md`.
+> ✅ **Colors sampled from the real brand (2026-07-01):** the logo's dominant pixels are a
+> textured harvest gold (#c0a020–#d0b030), not the copper we first guessed; brick/wood tones
+> sampled from the beer-garden & taproom photos. Gold buttons use dark text for AA contrast.
+> Spacing, elevation, motion, breakpoints adopted from the skill's `design-systems.md`.
 ```css
-/* Brand color — PLACEHOLDER, resample from logo in Phase 0 */
---ale-amber: #C8781E;   /* primary accent (beer copper) — maps to skill's --cta/--brand-primary */
---forest:    #1F3D2B;   /* deep Scottish green — dark sections/headers */
+/* Brand palette — sampled from logo & site photography */
+--gold:      #C3A126;   /* primary accent — the logo's harvest gold */
+--gold-dark: #9A7E12;   /* hover state */
+--forest:    #1F3D2B;   /* deep Scottish green — dark sections/headers (editorial choice) */
 --cream:     #F5EFE2;   /* warm paper background */
---charcoal:  #211E1B;   /* body text */
---heath:     #8A5A3B;   /* secondary warm brown */
---sky:       #7FA6A0;   /* muted loch teal — links/small accents */
+--charcoal:  #211E1B;   /* body text + hero overlays */
+--brick:     #6B4632;   /* warm brick/wood — sampled from the building photos */
+--loch:      #7FA6A0;   /* muted loch teal — links/small accents */
 
 /* Typography — Creative Portfolio pattern, brewery-tuned */
 --font-display: 'Fraunces', serif;        /* heritage display (skill uses Playfair) */
@@ -189,9 +191,11 @@ SaaS palette for Braeloch's warm brand tokens and Fraunces/Inter type.
 Confirm API access: Untappd for Business, Instagram token, Arryved, decide Google Calendar vs
 Sanity for events. Get brand assets (logo vectors, photos). Lock design tokens against the logo.
 
-**Phase 1 — Foundation**
-Next.js + Tailwind + Sanity + Vercel scaffold. Design system + global chrome (header/footer/
-open-now). Deploy pipeline + preview URLs.
+**Phase 1 — Foundation** _(✅ built 2026-07-01, commit `d7487d1`)_
+Next.js 16 + Tailwind v4 scaffold with the §1 design system, global chrome (sticky Header w/
+mobile menu + Order CTA, Footer, timezone-aware `OpenNowPill`), Fraunces/Inter fonts, Brewery
+JSON-LD, and a home page with hero + feature grid + Phase 2 module placeholders. Verified in
+browser; builds clean. _Still pending from Phase 1: Sanity project + Vercel deploy pipeline._
 
 **Phase 2 — Fix the broken flows (highest ROI)**
 Live `TapList` (Untappd). Live `EventCalendar`. `/food` menu with prices/photos/dietary tags.

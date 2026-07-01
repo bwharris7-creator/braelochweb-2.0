@@ -28,7 +28,7 @@ export default function OpenNowPill({ className = "" }: { className?: string }) 
       } ${className}`}
     >
       <span
-        className={`h-2 w-2 rounded-full ${status.open ? "bg-amber-ale" : "bg-charcoal/40"}`}
+        className={`h-2 w-2 rounded-full ${status.open ? "bg-gold" : "bg-charcoal/40"}`}
         aria-hidden
       />
       {status.open ? `Open now · closes ${status.closesAt}` : `Closed · opens ${status.opensNext}`}

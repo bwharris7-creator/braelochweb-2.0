@@ -4,21 +4,22 @@
  * Braeloch Brewing — Design Tokens (PLAN.md §1)
  * "Modern Craft / Scottish Heritage"
  *
- * ⚠️ Color values are PLACEHOLDERS until Phase 0 sampling of the real logo.
- * Everything else (motion, elevation, breakpoints) is adopted from the
- * modern-web-design skill's design-systems.md.
+ * ✅ Colors sampled from the real logo + site photography (2026-07-01):
+ *   gold  ← transparentbraelochlogo.png dominant pixels (#c0a020–#d0b030)
+ *   brick ← beer-garden/taproom photos (warm brick & wood, #604830/#483030)
+ * Motion, elevation, breakpoints adopted from the modern-web-design skill.
  */
 
 @theme {
-  /* Brand palette — resample from logo in Phase 0 */
-  --color-amber-ale: #c8781e;
-  --color-amber-ale-dark: #a86214;
+  /* Brand palette — sampled from logo & photos */
+  --color-gold: #c3a126;
+  --color-gold-dark: #9a7e12;
   --color-forest: #1f3d2b;
   --color-forest-dark: #162d20;
   --color-cream: #f5efe2;
   --color-cream-dark: #ece2cc;
   --color-charcoal: #211e1b;
-  --color-heath: #8a5a3b;
+  --color-brick: #6b4632;
   --color-loch: #7fa6a0;
 
   /* Typography — Fraunces display / Inter body (loaded via next/font) */
