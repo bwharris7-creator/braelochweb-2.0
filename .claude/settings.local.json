@@ -22,7 +22,9 @@
       "Bash(python3 -c ' *)",
       "Bash(npx tsc *)",
       "Bash(git add *)",
-      "Bash(git commit -q -m 'Look & feel: real brand imagery + sampled palette *)"
+      "Bash(git commit -q -m 'Look & feel: real brand imagery + sampled palette *)",
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code} in %{time_total}s\\\\n\" http://localhost:3000/)",
+      "Bash(git commit -q -m 'Design prototype: all five page shells \\(Beer, Food, Events, About, Visit\\) *)"
     ]
   }
 }

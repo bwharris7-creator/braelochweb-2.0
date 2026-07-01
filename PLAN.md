@@ -39,7 +39,7 @@ component templates as scaffolds (see §5).
 /* Brand palette — sampled from logo & site photography */
 --gold:      #C3A126;   /* primary accent — the logo's harvest gold */
 --gold-dark: #9A7E12;   /* hover state */
---forest:    #1F3D2B;   /* deep Scottish green — dark sections/headers (editorial choice) */
+--forest:    #1F3D2B;   /* deep Scottish green — dark sections/headers (✅ approved 2026-07-01) */
 --cream:     #F5EFE2;   /* warm paper background */
 --charcoal:  #211E1B;   /* body text + hero overlays */
 --brick:     #6B4632;   /* warm brick/wood — sampled from the building photos */
