@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+/*
+ * Braeloch Brewing — Design Tokens (PLAN.md §1)
+ * "Modern Craft / Scottish Heritage"
+ *
+ * ⚠️ Color values are PLACEHOLDERS until Phase 0 sampling of the real logo.
+ * Everything else (motion, elevation, breakpoints) is adopted from the
+ * modern-web-design skill's design-systems.md.
+ */
+
+@theme {
+  /* Brand palette — resample from logo in Phase 0 */
+  --color-amber-ale: #c8781e;
+  --color-amber-ale-dark: #a86214;
+  --color-forest: #1f3d2b;
+  --color-forest-dark: #162d20;
+  --color-cream: #f5efe2;
+  --color-cream-dark: #ece2cc;
+  --color-charcoal: #211e1b;
+  --color-heath: #8a5a3b;
+  --color-loch: #7fa6a0;
+
+  /* Typography — Fraunces display / Inter body (loaded via next/font) */
+  --font-display: var(--font-fraunces);
+  --font-sans: var(--font-inter);
+
+  /* Motion — skill's timing tokens */
+  --ease-craft: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Elevation — skill's shadow system, warmed to the charcoal hue */
+  --shadow-card: 0 4px 6px rgba(33, 30, 27, 0.07);
+  --shadow-card-hover: 0 10px 15px rgba(33, 30, 27, 0.1);
+  --shadow-hero: 0 20px 25px rgba(33, 30, 27, 0.1);
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-charcoal);
+  font-family: var(--font-sans);
+}
+
+/* Display headings default to the heritage serif */
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+}
+
+/* Scroll-reveal animation (skill's fadeInUp), gated by reduced motion */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* Visible focus for keyboard users (skill's a11y standard) */
+:focus-visible {
+  outline: 2px solid var(--color-amber-ale);
+  outline-offset: 2px;
+}

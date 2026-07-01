@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:braelochbrewing.beer)",
+      "WebSearch",
+      "Bash(cd \"/Users/harris/Library/Application Support/Claude/local-agent-mode-sessions/skills-plugin/4880c8a2-6bdd-405c-8cc7-4e9cb587dff6/86d4ebb9-8911-4a44-8bdf-0e5bc278f6fa/skills/modern-web-design\" && find . -type f | head -50)",
+      "WebFetch(domain:www.commoninja.com)",
+      "WebFetch(domain:commoninja.site)",
+      "Bash(curl -sL \"https://commoninja.site/8486c21f-ed86-4f36-8340-55ee24aea676\" -o page.html)",
+      "Bash(python3 -)",
+      "Bash(npm -v)",
+      "Bash(npm view *)",
+      "Bash(rm -rf /private/tmp/claude-501/-Users-harris-Projects-Braeloch-Website-2-0/fc578119-c1dc-430f-8dfe-3f887b24f9e6/scratchpad/scaffold)",
+      "Bash(mkdir -p /private/tmp/claude-501/-Users-harris-Projects-Braeloch-Website-2-0/fc578119-c1dc-430f-8dfe-3f887b24f9e6/scratchpad/scaffold)",
+      "Bash(cd /private/tmp/claude-501/-Users-harris-Projects-Braeloch-Website-2-0/fc578119-c1dc-430f-8dfe-3f887b24f9e6/scratchpad/scaffold)",
+      "Bash(npx --yes create-next-app@latest braeloch --typescript --tailwind --app --eslint --src-dir --import-alias \"@/*\" --use-npm --skip-install --disable-git --yes)",
+      "Bash(npm install *)",
+      "Bash(git init *)",
+      "Bash(npm run *)"
+    ]
+  }
+}
