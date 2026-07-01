@@ -71,7 +71,7 @@ warm palette allows), visible `focus-visible` outlines, semantic HTML, ARIA, log
 |---|---|---|
 | Framework | **Next.js 15 (App Router) + TypeScript** | Server components + ISR let us auto-refresh taps/events on a schedule with zero manual edits. Room to grow into e-commerce/reservations. |
 | Styling | **Tailwind CSS** + CSS variables for tokens | Per skill guidance; fast, consistent, small footprint. |
-| CMS | **Sanity** (headless) | For the *human-authored* content (menu, story, private-events copy, gallery). Non-technical staff get a clean editor; content is versioned. |
+| CMS | **Sanity** (headless) | For the *human-authored* content (menu, story, private-events copy, gallery). Non-technical staff get a clean editor; content is versioned. **Key requirement (Brandon, 2026-07-01): the taproom manager must be able to log in at a hidden URL (`/studio`, unlinked from the public site) with his own invited account and edit menu items/prices/dietary tags directly — publishes live, no developer in the loop.** Sanity Studio embedded in the Next app provides this: real auth (not just URL obscurity), per-user access that can be revoked, edit history, and draft/publish. Studio desk will be customized so the manager sees only Menu (not site copy). |
 | Hosting | **Vercel** | Native Next.js, edge CDN, cron jobs for the automation, preview deploys. |
 | Media | Sanity CDN / Vercel image optimization | Responsive images, lazy loading, AVIF/WebP. |
 | Analytics | Vercel Analytics + GA4 | Core Web Vitals + conversion tracking. |
@@ -198,8 +198,9 @@ JSON-LD, and a home page with hero + feature grid + Phase 2 module placeholders.
 browser; builds clean. _Still pending from Phase 1: Sanity project + Vercel deploy pipeline._
 
 **Phase 2 — Fix the broken flows (highest ROI)**
-Live `TapList` (Untappd). Live `EventCalendar`. `/food` menu with prices/photos/dietary tags.
-These three alone eclipse the current site.
+Live `TapList` (Untappd). Live `EventCalendar`. `/food` menu with prices/photos/dietary tags —
+**backed by Sanity with the manager-editable `/studio` admin (see §2 CMS requirement); this is
+now the menu's primary deliverable, not just static content.**
 
 **Phase 3 — Experience & conversion**
 Home live-hub, social strip, gallery + 3D tour, private-events form, newsletter, full SEO/JSON-LD.
@@ -251,7 +252,9 @@ Goal: de-risk every integration and gather every asset so Phase 1+ is pure build
 - [ ] **Logo in vector** (SVG/AI/EPS) — sample exact hex values → replace the placeholder colors
       in §1. This is what makes "keep current brand" real.
 - [ ] **High-res photography** — the rustic space, beer garden, food plating, taps, live music,
-      dog-friendly moments. Group by page (hero / gallery / food / events).
+      dog-friendly moments. Group by page (hero / gallery / food / events). _Brandon has
+      high-res replacements coming for some of the scraped images now in `public/images/`
+      (2026-07-01) — swap in when delivered; filenames can stay the same._
 - [ ] Fonts: Fraunces + Inter are open-license (Google Fonts) — no procurement needed. Confirm
       they pair well with the logo's lettering, else pick alternates.
 
