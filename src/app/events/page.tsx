@@ -2,6 +2,14 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import PageHero from "@/components/PageHero";
 import { site } from "@/lib/site";
+import {
+  eventsJsonLd,
+  fmtEventDate,
+  fmtEventTime,
+  getUpcomingEvents,
+  type EventInstance,
+  type EventKind,
+} from "@/lib/events";
 
 export const metadata: Metadata = {
   title: "Events — Live Music & More",
@@ -9,34 +17,65 @@ export const metadata: Metadata = {
 };
 
 /**
- * Events page shell (PLAN.md §4 /events).
- * DESIGN PHASE: these are REAL events from the current Common Ninja calendar
- * (verified 2026-07-01) rendered as static content — Phase 2 makes this
- * self-updating from the same source.
+ * Events page (PLAN.md §4 /events) — LIVE from the Common Ninja calendar,
+ * revalidated hourly. Staff keep updating the calendar exactly as before;
+ * this page keeps up on its own.
  */
 
-const upcoming = [
-  { date: "Fri, Jul 3", time: "5–8pm", title: "Live Music: Steve Liberace", kind: "Live Music" },
-  { date: "Sat, Jul 11", time: "6–9pm", title: "Live Music: Dog Paw", kind: "Live Music" },
-  { date: "Sun, Jul 12", time: "2–5pm", title: "Live Music: Allison Landon", kind: "Live Music" },
-  { date: "Sat, Jul 18", time: "6–9pm", title: "Live Music: JamNJames", kind: "Live Music" },
-  { date: "Sun, Jul 19", time: "2–5pm", title: "Live Music: Jim Nelson", kind: "Live Music" },
-  { date: "Sat, Jul 25", time: "6–9pm", title: "Live Music: Just a Bit Outside", kind: "Live Music" },
-  { date: "Thu, Jul 30", time: "5:30pm", title: "Open Mic Night", kind: "Community" },
-  { date: "Sun, Aug 2", time: "2–5pm", title: "Live Music: Acoustic Ferrari", kind: "Live Music" },
-  { date: "Sat, Aug 8", time: "All Day", title: "Braeloch @ Festival of Flight Air Show", kind: "Off-Site" },
-  { date: "Sat, Aug 22", time: "12–4pm", title: "Braeloch Blood Drive", kind: "Community" },
-];
-
-const kindColor: Record<string, string> = {
+const kindColor: Record<EventKind, string> = {
   "Live Music": "bg-gold/15 text-gold-dark",
   Community: "bg-loch/20 text-forest",
   "Off-Site": "bg-brick/15 text-brick",
+  Event: "bg-forest/10 text-forest",
 };
 
-export default function EventsPage() {
-  const thisWeekend = upcoming.slice(0, 1);
-  const rest = upcoming.slice(1);
+function SourceUnavailable() {
+  return (
+    <div className="rounded-xl border-2 border-dashed border-brick/40 p-10 text-center">
+      <h2 className="font-display text-2xl font-bold text-forest">
+        The calendar is catching its breath
+      </h2>
+      <p className="mx-auto mt-2 max-w-md text-charcoal/60">
+        We couldn&rsquo;t load the events feed just now. Check our{" "}
+        <a
+          href={site.social.instagram}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-semibold text-forest underline hover:text-gold-dark"
+        >
+          Instagram
+        </a>{" "}
+        for what&rsquo;s happening, or try again in a minute.
+      </p>
+    </div>
+  );
+}
+
+function FeaturedEvent({ e }: { e: EventInstance }) {
+  return (
+    <div className="rounded-xl bg-forest p-8 text-cream shadow-hero sm:flex sm:items-center sm:justify-between sm:gap-6">
+      <div className="min-w-0">
+        <p className="text-sm font-semibold uppercase tracking-widest text-gold">
+          {fmtEventDate(e)} · {fmtEventTime(e)}
+        </p>
+        <h3 className="mt-2 font-display text-3xl font-bold">{e.title}</h3>
+        {e.description && (
+          <p className="mt-3 line-clamp-2 max-w-xl whitespace-pre-line text-cream/80">
+            {e.description}
+          </p>
+        )}
+      </div>
+      <span className="mt-4 inline-block shrink-0 rounded-full bg-gold px-4 py-1.5 text-sm font-semibold text-forest sm:mt-0">
+        {e.kind}
+      </span>
+    </div>
+  );
+}
+
+export default async function EventsPage() {
+  const events = await getUpcomingEvents(30);
+  const featured = events?.[0];
+  const rest = events?.slice(1) ?? [];
 
   return (
     <>
@@ -46,53 +85,65 @@ export default function EventsPage() {
         subtitle="Something's always on — weekly live music, open mic nights, and the occasional blood drive between beers."
       />
 
+      {events !== null && events.length > 0 && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(eventsJsonLd(events)) }}
+        />
+      )}
+
       <div className="mx-auto max-w-7xl px-4 pt-8 sm:px-6 lg:px-8">
-        <p className="inline-flex items-center gap-2 rounded-full bg-loch/20 px-4 py-1.5 text-xs font-medium text-forest">
-          <span className="h-2 w-2 rounded-full bg-loch" aria-hidden />
-          Real events from the current calendar — auto-updating in Phase 2
+        <p className="inline-flex items-center gap-2 rounded-full bg-forest/10 px-4 py-1.5 text-xs font-medium text-forest">
+          <span className="h-2 w-2 animate-pulse rounded-full bg-gold" aria-hidden />
+          Live from our events calendar · updates hourly
         </p>
       </div>
 
-      {/* This weekend */}
       <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-        <h2 className="font-display text-2xl font-bold text-forest">This Weekend</h2>
-        <div className="mt-4">
-          {thisWeekend.map((e) => (
-            <div
-              key={e.title}
-              className="rounded-xl bg-forest p-8 text-cream shadow-hero sm:flex sm:items-center sm:justify-between"
-            >
-              <div>
-                <p className="text-sm font-semibold uppercase tracking-widest text-gold">
-                  {e.date} · {e.time}
-                </p>
-                <h3 className="mt-2 font-display text-3xl font-bold">{e.title}</h3>
-              </div>
-              <span className="mt-4 inline-block rounded-full bg-gold px-4 py-1.5 text-sm font-semibold text-forest sm:mt-0">
-                {e.kind}
-              </span>
-            </div>
-          ))}
-        </div>
-      </section>
+        {events === null ? (
+          <SourceUnavailable />
+        ) : events.length === 0 ? (
+          <div className="rounded-xl bg-white p-10 text-center shadow-card">
+            <h2 className="font-display text-2xl font-bold text-forest">
+              Nothing on the books — yet
+            </h2>
+            <p className="mt-2 text-charcoal/60">
+              New events land here as soon as they&rsquo;re scheduled.
+            </p>
+          </div>
+        ) : (
+          <>
+            <h2 className="font-display text-2xl font-bold text-forest">Up Next</h2>
+            <div className="mt-4">{featured && <FeaturedEvent e={featured} />}</div>
 
-      {/* Upcoming list */}
-      <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
-        <h2 className="font-display text-2xl font-bold text-forest">Coming Up</h2>
-        <div className="mt-4 divide-y divide-cream-dark overflow-hidden rounded-xl bg-white shadow-card">
-          {rest.map((e) => (
-            <div key={e.title} className="flex flex-wrap items-center gap-3 px-6 py-4 sm:gap-6">
-              <div className="w-28 shrink-0">
-                <p className="font-semibold text-charcoal">{e.date}</p>
-                <p className="text-sm text-charcoal/60">{e.time}</p>
-              </div>
-              <p className="flex-1 font-medium text-charcoal">{e.title}</p>
-              <span className={`rounded-full px-3 py-1 text-xs font-semibold ${kindColor[e.kind]}`}>
-                {e.kind}
-              </span>
-            </div>
-          ))}
-        </div>
+            {rest.length > 0 && (
+              <>
+                <h2 className="mt-12 font-display text-2xl font-bold text-forest">Coming Up</h2>
+                <div className="mt-4 divide-y divide-cream-dark overflow-hidden rounded-xl bg-white shadow-card">
+                  {rest.map((e) => (
+                    <div key={e.id} className="flex flex-wrap items-center gap-3 px-6 py-4 sm:gap-6">
+                      <div className="w-28 shrink-0">
+                        <p className="font-semibold text-charcoal">{fmtEventDate(e)}</p>
+                        <p className="text-sm text-charcoal/60">{fmtEventTime(e)}</p>
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <p className="font-medium text-charcoal">{e.title}</p>
+                        {e.location && (
+                          <p className="truncate text-sm text-charcoal/50">{e.location}</p>
+                        )}
+                      </div>
+                      <span
+                        className={`rounded-full px-3 py-1 text-xs font-semibold ${kindColor[e.kind]}`}
+                      >
+                        {e.kind}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
+          </>
+        )}
       </section>
 
       {/* Private events */}

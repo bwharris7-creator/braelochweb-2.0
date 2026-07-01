@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import ThisWeekend from "@/components/ThisWeekend";
 import { site } from "@/lib/site";
 
 /**
@@ -111,12 +112,7 @@ export default function Home() {
                 Live tap list from Untappd lands here in Phase 2.
               </p>
             </div>
-            <div className="rounded-xl border-2 border-dashed border-brick/40 p-8 text-center">
-              <h2 className="font-display text-2xl font-bold text-forest">This Weekend</h2>
-              <p className="mt-2 text-charcoal/60">
-                Live events from the calendar land here in Phase 2.
-              </p>
-            </div>
+            <ThisWeekend />
           </div>
         </div>
       </section>
