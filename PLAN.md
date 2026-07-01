@@ -204,6 +204,11 @@ homepage `ThisWeekend`, emits Event JSON-LD, ISR-cached hourly with graceful fal
 `/food` menu with prices/photos/dietary tags —
 **backed by Sanity with the manager-editable `/studio` admin (see §2 CMS requirement); this is
 now the menu's primary deliverable, not just static content.**
+✅ **Menu backend scaffolded 2026-07-01 (commit `d826e42`):** schemas, embedded Studio at
+`/studio` (noindex, menu-only desk), `getMenu()` w/ 60s revalidate + sample fallback.
+**Blocked on one human step: create the free Sanity project (sanity.io), put the project ID in
+`.env.local` (copy `env.example`), add it in Vercel later, and invite the taproom manager's
+email as an Editor. Then seed the real menu content in `/studio`.**
 
 **Phase 3 — Experience & conversion**
 Home live-hub, social strip, gallery + 3D tour, private-events form, newsletter, full SEO/JSON-LD.
