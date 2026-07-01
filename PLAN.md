@@ -197,8 +197,11 @@ mobile menu + Order CTA, Footer, timezone-aware `OpenNowPill`), Fraunces/Inter f
 JSON-LD, and a home page with hero + feature grid + Phase 2 module placeholders. Verified in
 browser; builds clean. _Still pending from Phase 1: Sanity project + Vercel deploy pipeline._
 
-**Phase 2 — Fix the broken flows (highest ROI)**
-Live `TapList` (Untappd). Live `EventCalendar`. `/food` menu with prices/photos/dietary tags —
+**Phase 2 — Fix the broken flows (highest ROI)** _(in progress)_
+Live `TapList` (Untappd). ✅ **Live events shipped 2026-07-01 (commit `8e10440`):**
+`src/lib/events.ts` reads the Common Ninja widget, expands recurrences, renders `/events` +
+homepage `ThisWeekend`, emits Event JSON-LD, ISR-cached hourly with graceful fallback.
+`/food` menu with prices/photos/dietary tags —
 **backed by Sanity with the manager-editable `/studio` admin (see §2 CMS requirement); this is
 now the menu's primary deliverable, not just static content.**
 
