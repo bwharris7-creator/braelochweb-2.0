@@ -204,11 +204,12 @@ homepage `ThisWeekend`, emits Event JSON-LD, ISR-cached hourly with graceful fal
 `/food` menu with prices/photos/dietary tags —
 **backed by Sanity with the manager-editable `/studio` admin (see §2 CMS requirement); this is
 now the menu's primary deliverable, not just static content.**
-✅ **Menu backend scaffolded 2026-07-01 (commit `d826e42`):** schemas, embedded Studio at
-`/studio` (noindex, menu-only desk), `getMenu()` w/ 60s revalidate + sample fallback.
-**Blocked on one human step: create the free Sanity project (sanity.io), put the project ID in
-`.env.local` (copy `env.example`), add it in Vercel later, and invite the taproom manager's
-email as an Editor. Then seed the real menu content in `/studio`.**
+✅ **Menu backend LIVE end-to-end 2026-07-01:** Sanity project `byjohnwx` created (dataset
+`production`, CORS `localhost:3000`), Studio at `/studio` working, Brandon published the first
+real item (Bavarian Pretzel $11.50) and `/food` flipped from sample to live within seconds.
+Remaining menu tasks: **seed the rest of the real menu in `/studio`** (Brandon/manager),
+**invite the taproom manager's email as Editor** (sanity.io/manage → Members), and at deploy
+time add the env vars in Vercel + the production domain as a CORS origin.
 
 **Phase 3 — Experience & conversion**
 Home live-hub, social strip, gallery + 3D tour, private-events form, newsletter, full SEO/JSON-LD.
