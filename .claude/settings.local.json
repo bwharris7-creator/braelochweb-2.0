@@ -29,7 +29,16 @@
       "Bash(git commit -q -m 'Phase 2: live events module from Common Ninja calendar *)",
       "Bash(git commit -q -m 'PLAN: mark live events shipped *)",
       "Bash(node -e \"const p=require\\('./package.json'\\); console.log\\(Object.entries\\(p.dependencies\\).map\\(\\([k,v]\\)=>k+' '+v\\).join\\('\\\\n'\\)\\)\")",
-      "Bash(git commit -q -m 'Phase 2: Sanity menu backend scaffold \\(hidden /studio admin\\) *)"
+      "Bash(git commit -q -m 'Phase 2: Sanity menu backend scaffold \\(hidden /studio admin\\) *)",
+      "Bash(git commit -q -m 'PLAN: menu backend scaffolded, blocked on Sanity signup *)",
+      "Bash(curl -s \"https://byjohnwx.api.sanity.io/v2026-07-01/data/query/production?query=count\\(*\\)\")",
+      "Bash(curl -s \"https://byjohnwx.api.sanity.io/v2026-07-01/data/query/production?query=*%5B%21\\(_id%20in%20path\\(%22drafts.**%22\\)\\)%5D%7B_type%2C%20title%2C%20name%2C%20price%7D\")",
+      "Bash(python3 -m json.tool)",
+      "Bash(curl -s \"https://byjohnwx.api.sanity.io/v2026-07-01/data/query/production?query=*%5B_type%3D%3D%22menuItem%22%20%26%26%20%21\\(_id%20in%20path\\(%22drafts.**%22\\)\\)%5D%7Bname%2C%20price%2C%20dietaryTags%2C%20available%2C%20%22category%22%3A%20category-%3Etitle%7D\")",
+      "Bash(git commit -q -m 'PLAN: menu backend live end-to-end \\(first real item published\\) *)",
+      "Bash(npx --yes vercel --version)",
+      "Bash(npx vercel *)",
+      "Bash(git commit -q -m 'Deploy: pin Next.js framework for Vercel *)"
     ]
   }
 }
