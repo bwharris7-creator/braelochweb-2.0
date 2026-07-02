@@ -14,12 +14,12 @@ export const metadata: Metadata = {
  */
 
 const gallery = [
-  { src: "/images/taproom.webp", alt: "The taproom on a packed night" },
-  { src: "/images/beer-garden.webp", alt: "The beer garden at dusk" },
+  { src: "/images/lounge.webp", alt: "Leather couches under the hand-painted Braeloch mural" },
+  { src: "/images/sign.webp", alt: "The Braeloch Brewing sign on the brick facade" },
   { src: "/images/dog.webp", alt: "A regular of the four-legged variety" },
-  { src: "/images/beer-pour.webp", alt: "Braeloch cans outside the brewery" },
-  { src: "/images/food.webp", alt: "From the kitchen" },
-  { src: "/images/hive-mind.webp", alt: "Hive Mind honey ale" },
+  { src: "/images/taps.webp", alt: "Braeloch tap handles at the bar" },
+  { src: "/images/hat-wall.webp", alt: "The hat wall above the tanks" },
+  { src: "/images/taproom.webp", alt: "The taproom on a packed night" },
 ];
 
 export default function AboutPage() {
@@ -72,8 +72,8 @@ export default function AboutPage() {
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 sm:px-6 md:grid-cols-2 lg:px-8">
           <div className="relative aspect-[3/2] overflow-hidden rounded-xl shadow-hero">
             <Image
-              src="/images/beer-garden.webp"
-              alt="The 1903 trolley barn that houses Braeloch"
+              src="/images/facade.webp"
+              alt="The 1903 trolley barn that houses Braeloch, BREWERY sign over the old trolley door"
               fill
               className="object-cover"
               sizes="(min-width: 768px) 50vw, 100vw"
@@ -104,19 +104,30 @@ export default function AboutPage() {
       </section>
 
       {/* Brewhouse — real copy */}
-      <section className="mx-auto max-w-3xl px-4 py-16 text-center sm:px-6 lg:px-8">
-        <p className="text-sm font-semibold uppercase tracking-widest text-gold-dark">
-          The Brewhouse
-        </p>
-        <h2 className="mt-3 font-display text-3xl font-bold text-forest">
-          10 barrels, three vessels, endless rotation
-        </h2>
-        <p className="mt-4 text-lg leading-relaxed text-charcoal/70">
-          Braeloch runs a 10bbl, 3-vessel brewhouse designed and built for us in the USA by
-          Practical Fusion in Oregon. The cellar holds four 10bbl fermentors matched by four
-          brite tanks — room to brew multiple batches a week and let lagers condition as long as
-          they need.
-        </p>
+      <section className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 sm:px-6 md:grid-cols-2 lg:px-8">
+        <div>
+          <p className="text-sm font-semibold uppercase tracking-widest text-gold-dark">
+            The Brewhouse
+          </p>
+          <h2 className="mt-3 font-display text-3xl font-bold text-forest">
+            10 barrels, three vessels, endless rotation
+          </h2>
+          <p className="mt-4 text-lg leading-relaxed text-charcoal/70">
+            Braeloch runs a 10bbl, 3-vessel brewhouse designed and built for us in the USA by
+            Practical Fusion in Oregon. The cellar holds four 10bbl fermentors matched by four
+            brite tanks — room to brew multiple batches a week and let lagers condition as long
+            as they need.
+          </p>
+        </div>
+        <div className="relative aspect-[3/2] overflow-hidden rounded-xl shadow-card">
+          <Image
+            src="/images/brewhouse.webp"
+            alt="Stainless fermentors under the brick arches of the tank room"
+            fill
+            className="object-cover"
+            sizes="(min-width: 768px) 50vw, 100vw"
+          />
+        </div>
       </section>
 
       {/* Gallery */}

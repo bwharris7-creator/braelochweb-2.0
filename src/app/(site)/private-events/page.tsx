@@ -50,8 +50,8 @@ export default function PrivateEventsPage() {
       {/* Atmosphere band */}
       <section className="relative text-cream">
         <Image
-          src="/images/taproom.webp"
-          alt="A packed private event in the Braeloch taproom"
+          src="/images/private-room.webp"
+          alt="The mezzanine event space set for a party, under the hand-painted Braeloch mural"
           fill
           className="object-cover"
           sizes="100vw"
