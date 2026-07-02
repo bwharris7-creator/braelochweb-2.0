@@ -11,13 +11,14 @@ import { apiVersion, dataset, projectId, sanityConfigured } from "@/sanity/env";
 export interface MenuItem {
   name: string;
   description: string;
-  price: number;
+  price: number | null;
   dietaryTags: string[];
   photoUrl: string | null;
 }
 
 export interface MenuCategory {
   title: string;
+  note?: string | null;
   items: MenuItem[];
 }
 
@@ -34,6 +35,7 @@ const client = sanityConfigured
 const MENU_QUERY = /* groq */ `
 *[_type == "menuCategory"] | order(order asc) {
   title,
+  note,
   "items": *[_type == "menuItem" && references(^._id) && available != false] | order(order asc) {
     name,
     "description": coalesce(description, ""),

@@ -61,6 +61,7 @@ export default async function FoodPage() {
         {categories.map((section) => (
           <div key={section.title} id={slug(section.title)} className="mt-12 scroll-mt-24">
             <h2 className="font-display text-2xl font-bold text-forest">{section.title}</h2>
+            {section.note && <p className="mt-1 text-sm italic text-charcoal/60">{section.note}</p>}
             <div className="mt-4 space-y-4">
               {section.items.map((item) => (
                 <div key={item.name} className="flex gap-5 rounded-xl bg-white p-5 shadow-card">
@@ -80,9 +81,11 @@ export default async function FoodPage() {
                       <h3 className="font-display text-lg font-semibold text-charcoal">
                         {item.name}
                       </h3>
-                      <span className="shrink-0 font-semibold text-gold-dark">
-                        {fmtPrice(item.price)}
-                      </span>
+                      {item.price != null && (
+                        <span className="shrink-0 font-semibold text-gold-dark">
+                          {fmtPrice(item.price)}
+                        </span>
+                      )}
                     </div>
                     <div className="mt-1 flex flex-wrap items-center gap-2">
                       {item.description && (

@@ -18,6 +18,13 @@ export const menuCategory = defineType({
       validation: (r) => r.required(),
     }),
     defineField({
+      name: "note",
+      title: "Category Note",
+      type: "string",
+      description:
+        "Optional line under the category heading, e.g. 'served on a brioche bun with kettle chips'.",
+    }),
+    defineField({
       name: "order",
       title: "Display Order",
       type: "number",
@@ -59,8 +66,8 @@ export const menuItem = defineType({
       name: "price",
       title: "Price ($)",
       type: "number",
-      description: "Just the number, e.g. 12 or 12.5",
-      validation: (r) => r.required().positive(),
+      description: "Just the number, e.g. 12 or 12.5. Leave blank to show the item without a price.",
+      validation: (r) => r.positive(),
     }),
     defineField({
       name: "dietaryTags",
