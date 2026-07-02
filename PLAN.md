@@ -219,6 +219,10 @@ Merch / beer-to-go shop, tighter Arryved integration, loyalty/email automation.
 
 **Phase 5 — Launch**
 Content migration, redirects from old URLs, QA on real devices, analytics, DNS cutover.
+✅ **Deployed to Vercel 2026-07-01: https://braeloch.vercel.app** (project `braeloch`, Hobby
+plan, Sanity env vars set for prod+preview, all routes + live menu/events verified in prod).
+Remaining deploy tasks: add `https://braeloch.vercel.app` as a Sanity CORS origin (so `/studio`
+works on the deployed site), then at launch add the real domain + DNS cutover.
 
 ---
 
