@@ -1,6 +1,17 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  async headers() {
+    return [
+      {
+        // noindex the temporary *.vercel.app URL; the real domain
+        // (braelochbrewing.beer) won't match and gets indexed normally.
+        source: "/:path*",
+        has: [{ type: "host", value: "(?<host>.*\\.vercel\\.app)" }],
+        headers: [{ key: "X-Robots-Tag", value: "noindex" }],
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       // Sanity-hosted menu photos
