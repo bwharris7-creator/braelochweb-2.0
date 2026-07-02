@@ -17,7 +17,8 @@ export const site = {
     zip: "19348",
   },
   mapsUrl: "https://maps.google.com/?q=Braeloch+Brewing+225+Birch+St+Kennett+Square+PA+19348",
-  orderUrl: "https://braeloch.arryved.com", // confirm exact Arryved link in Phase 0
+  // Real Arryved pickup link (verified from the current site, 2026-07-02)
+  orderUrl: "https://commerce.arryved.com/location/BOJuuMkO/modality/pickup/",
   social: {
     instagram: "https://www.instagram.com/braelochbrewing/",
     facebook: "https://www.facebook.com/BraelochBrewing/",
