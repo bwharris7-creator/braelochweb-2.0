@@ -24,6 +24,14 @@ export const metadata: Metadata = {
     siteName: site.name,
     type: "website",
     locale: "en_US",
+    images: [
+      {
+        url: "/images/beer-garden.webp",
+        width: 2500,
+        height: 1875,
+        alt: "The Braeloch Brewing beer garden at dusk",
+      },
+    ],
   },
 };
 
