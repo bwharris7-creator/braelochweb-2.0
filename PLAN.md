@@ -213,6 +213,14 @@ time add the env vars in Vercel + the production domain as a CORS origin.
 
 **Phase 3 — Experience & conversion**
 Home live-hub, social strip, gallery + 3D tour, private-events form, newsletter, full SEO/JSON-LD.
+✅ **Shipped 2026-07-02:** real About copy (third-place story, Keuka Lake namesake — NOT Scottish
+heritage; homepage hero corrected accordingly), Matterport tour embed, `/private-events` page +
+inquiry form → Sanity `eventInquiry` docs in `/studio` (needs a server-only
+`SANITY_API_WRITE_TOKEN` env var — new Editor token — in `.env.local` + Vercel; mailto fallback
+until then). **Untappd tap module built** (`src/lib/taps.ts`, UTFB API adapter): goes live when
+`UNTAPPD_EMAIL` + `UNTAPPD_API_TOKEN` (business.untappd.com → API access token) are set.
+Note: scraping untappd.com directly was rejected (AJAX requires session + ToS). Still open:
+Instagram strip (needs Meta app/token), newsletter.
 
 **Phase 4 — Growth (optional)**
 Merch / beer-to-go shop, tighter Arryved integration, loyalty/email automation.
