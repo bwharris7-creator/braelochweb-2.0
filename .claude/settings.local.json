@@ -50,7 +50,28 @@
       "Bash(curl -sI https://braeloch.vercel.app/)",
       "Bash(git commit -q -m 'noindex the temporary vercel.app host until DNS cutover *)",
       "Bash(curl -sL https://braelochbrewing.beer/lets-eat -o /private/tmp/claude-501/-Users-harris-Projects-Braeloch-Website-2-0/fc578119-c1dc-430f-8dfe-3f887b24f9e6/scratchpad/lets-eat.html -w '%{http_code} %{size_download}b\\\\n')",
-      "Bash(git commit -q -m 'Menu schema: optional price + category notes for real-menu seeding *)"
+      "Bash(git commit -q -m 'Menu schema: optional price + category notes for real-menu seeding *)",
+      "Bash(SANITY_API_WRITE_TOKEN=\"skhUKdH3EbwCuPWItz4UafcMa2WTzN73eN5PgRzXAjkZOZXJqm8ijcMNHqCMpULu8WfRD9ZR5OQKDS3SO9eXwtG04dz39RpFKvdRAguOJAPF7f0bvEH253B5SEWjcCS5rZuEze47g5Mec4Y2Mh5ih8q3QqAOG2QTVwDhyqazlvxTi5pBs9fA\" node seed-menu.mjs)",
+      "Bash(curl -s \"https://byjohnwx.api.sanity.io/v2026-07-01/data/query/production?query=%7B%22categories%22%3A%20count\\(*%5B_type%3D%3D%22menuCategory%22%5D\\)%2C%20%22items%22%3A%20count\\(*%5B_type%3D%3D%22menuItem%22%5D\\)%2C%20%22oldPretzel%22%3A%20count\\(*%5B_type%3D%3D%22menuItem%22%20%26%26%20name%3D%3D%22Bavarian%20Pretzel%22%5D\\)%7D\")",
+      "Bash(curl -s \"https://byjohnwx.api.sanity.io/v2026-07-01/data/query/production?query=%7B%22categories%22%3A%20count\\(*%5B_type%3D%3D%22menuCategory%22%5D\\)%2C%20%22items%22%3A%20count\\(*%5B_type%3D%3D%22menuItem%22%5D\\)%7D\")",
+      "Bash(curl -s http://localhost:3000/food)",
+      "Bash(curl -s -X POST https://byjohnwx.api.sanity.io/v2026-07-01/data/mutate/production -H 'Content-Type: application/json' -H 'Authorization: Bearer skhUKdH3EbwCuPWItz4UafcMa2WTzN73eN5PgRzXAjkZOZXJqm8ijcMNHqCMpULu8WfRD9ZR5OQKDS3SO9eXwtG04dz39RpFKvdRAguOJAPF7f0bvEH253B5SEWjcCS5rZuEze47g5Mec4Y2Mh5ih8q3QqAOG2QTVwDhyqazlvxTi5pBs9fA' -d '{\"mutations\":[{\"delete\":{\"query\":\"*[_type==\\\\\"menuCategory\\\\\" && title==\\\\\"Shareables\\\\\" && _id != \\\\\"menuCategory-shareables\\\\\"]\"}}]}')",
+      "Bash(curl -s \"http://localhost:3000/food?fresh=1\")",
+      "Bash(grep -oE \"Kennett Burger|Cheesesteak Egg Rolls|Cajun Shrimp \\\\\\(2\\\\\\)|12 years and under|Live menu · kept fresh|Jumbo Bavarian Pretzel|\\\\\\\\\\\\$11\\\\.50\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:3000/food)",
+      "Bash(grep -oE \"Live menu · kept fresh|Kennett Burger|Cheesesteak Egg Rolls|Cajun Shrimp \\\\\\(2\\\\\\)|12 years and under|Jumbo Bavarian Pretzel|\\\\\\\\\\\\$11\\\\.50|Ice Cream\")",
+      "Bash(curl -s https://braeloch.vercel.app/food)",
+      "Bash(curl -sL -A 'Mozilla/5.0 \\(Macintosh; Intel Mac OS X 10_15_7\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/126.0 Safari/537.36' https://untappd.com/v/braeloch-brewing/8495987 -o /private/tmp/claude-501/-Users-harris-Projects-Braeloch-Website-2-0/fc578119-c1dc-430f-8dfe-3f887b24f9e6/scratchpad/untappd-venue.html -w '%{http_code} %{size_download}b\\\\n')",
+      "Bash(grep -oE 'section[_-]?id[^,;]{0,40}|menu_section[^,;]{0,60}' /private/tmp/claude-501/-Users-harris-Projects-Braeloch-Website-2-0/fc578119-c1dc-430f-8dfe-3f887b24f9e6/scratchpad/untappd-venue.html)",
+      "Bash(curl -s https://untappd.com/assets/v3/js/venue/venue.menu.min.js?v=2.8.40 -o /private/tmp/claude-501/-Users-harris-Projects-Braeloch-Website-2-0/fc578119-c1dc-430f-8dfe-3f887b24f9e6/scratchpad/venue.menu.js -w '%{http_code} %{size_download}b\\\\n')",
+      "Bash(grep -oE '\"/venue/[a-z_/]+\"|url:[^,]{0,60}' /private/tmp/claude-501/-Users-harris-Projects-Braeloch-Website-2-0/fc578119-c1dc-430f-8dfe-3f887b24f9e6/scratchpad/venue.menu.js)",
+      "Bash(grep -oE 'id=\"[^\"]*[0-9]{3,}[^\"]*\"' /private/tmp/claude-501/-Users-harris-Projects-Braeloch-Website-2-0/fc578119-c1dc-430f-8dfe-3f887b24f9e6/scratchpad/untappd-venue.html)",
+      "Bash(curl -s -A \"Mozilla/5.0 \\(Macintosh; Intel Mac OS X 10_15_7\\) AppleWebKit/537.36 Chrome/126.0 Safari/537.36\" -H \"X-Requested-With: XMLHttpRequest\" \"https://untappd.com/venue/more_menu_section/1510958/0\")",
+      "Bash(curl -s -o /dev/null -w \"no-XRW: %{http_code}\\\\n\" -A \"Mozilla/5.0\" \"https://untappd.com/venue/more_menu_section/1510958/0\")",
+      "Bash(curl -s -o /dev/null -w \"with-XRW: %{http_code}\\\\n\" -A \"Mozilla/5.0 \\(Macintosh; Intel Mac OS X 10_15_7\\) AppleWebKit/537.36 Chrome/126.0 Safari/537.36\" -H \"X-Requested-With: XMLHttpRequest\" -H \"Referer: https://untappd.com/v/braeloch-brewing/8495987\" \"https://untappd.com/venue/more_menu_section/1510958/0\")",
+      "Bash(curl -s -A 'Mozilla/5.0 \\(Macintosh; Intel Mac OS X 10_15_7\\) AppleWebKit/537.36 Chrome/126.0 Safari/537.36' -H 'X-Requested-With: XMLHttpRequest' -H 'Referer: https://untappd.com/v/braeloch-brewing/8495987' https://untappd.com/venue/more_menu_section/1510958/0 -o /private/tmp/claude-501/-Users-harris-Projects-Braeloch-Website-2-0/fc578119-c1dc-430f-8dfe-3f887b24f9e6/scratchpad/section.json)",
+      "Bash(curl -s http://localhost:3000/about)",
+      "Bash(curl -s http://localhost:3000/)"
     ]
   }
 }

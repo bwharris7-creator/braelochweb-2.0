@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import PageHero from "@/components/PageHero";
 import { site } from "@/lib/site";
 import {
@@ -168,15 +169,12 @@ export default async function EventsPage() {
               Birthdays, corporate events, weddings — the taproom, mezzanine, and beer garden can
               host groups from a dozen to a few hundred.
             </p>
-            <a
-              href={`mailto:${site.email}?subject=Private%20Event%20Inquiry`}
+            <Link
+              href="/private-events"
               className="mt-8 inline-block rounded-md bg-gold px-8 py-3 font-semibold text-forest transition-all hover:-translate-y-1 hover:bg-gold-dark hover:shadow-card-hover"
             >
               Start an Inquiry
-            </a>
-            <p className="mt-3 text-sm text-cream/60">
-              (A proper booking form replaces this in Phase 3.)
-            </p>
+            </Link>
           </div>
         </div>
       </section>

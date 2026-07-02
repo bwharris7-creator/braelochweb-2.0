@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import PageHero from "@/components/PageHero";
 import { site } from "@/lib/site";
+import { getTaps } from "@/lib/taps";
 
 export const metadata: Metadata = {
   title: "Beer — What's on Tap",
@@ -9,9 +10,9 @@ export const metadata: Metadata = {
 };
 
 /**
- * Beer page shell (PLAN.md §4 /beer).
- * DESIGN PHASE: tap list below is real Braeloch beers as static sample data —
- * it goes live from Untappd for Business in Phase 2.
+ * Beer page (PLAN.md §4 /beer) — live from Untappd for Business when
+ * UNTAPPD_EMAIL/UNTAPPD_API_TOKEN are set; otherwise the sample list below
+ * (real Braeloch beers) with a design-preview chip.
  */
 
 const sampleTaps = [
@@ -66,7 +67,18 @@ const toGo = [
   { format: "Cases", note: "For the truly committed" },
 ];
 
-export default function BeerPage() {
+export default async function BeerPage() {
+  const liveTaps = await getTaps();
+  const taps = liveTaps?.length
+    ? liveTaps.map((t) => ({
+        name: t.name,
+        style: t.style,
+        abv: t.abv,
+        desc: t.description,
+        tag: t.section,
+      }))
+    : null;
+
   return (
     <>
       <PageHero
@@ -75,32 +87,43 @@ export default function BeerPage() {
         subtitle="Brewed on-site in small batches. Plus PA wine, hard cider, seltzers, and Athletic NA beer for the rest of the crew."
       />
 
-      {/* Design-phase notice */}
+      {/* Live/preview notice */}
       <div className="mx-auto max-w-7xl px-4 pt-8 sm:px-6 lg:px-8">
-        <p className="inline-flex items-center gap-2 rounded-full bg-loch/20 px-4 py-1.5 text-xs font-medium text-forest">
-          <span className="h-2 w-2 rounded-full bg-loch" aria-hidden />
-          Design preview — this list goes live from Untappd in Phase 2
-        </p>
+        {taps ? (
+          <p className="inline-flex items-center gap-2 rounded-full bg-forest/10 px-4 py-1.5 text-xs font-medium text-forest">
+            <span className="h-2 w-2 animate-pulse rounded-full bg-gold" aria-hidden />
+            Live from Untappd · updates hourly
+          </p>
+        ) : (
+          <p className="inline-flex items-center gap-2 rounded-full bg-loch/20 px-4 py-1.5 text-xs font-medium text-forest">
+            <span className="h-2 w-2 rounded-full bg-loch" aria-hidden />
+            Design preview — goes live when Untappd connects
+          </p>
+        )}
       </div>
 
       {/* Tap list */}
       <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {sampleTaps.map((beer) => (
+          {(taps ?? sampleTaps).map((beer) => (
             <div
               key={beer.name}
               className="rounded-xl bg-white p-6 shadow-card transition-all hover:-translate-y-1 hover:shadow-card-hover"
             >
               <div className="flex items-start justify-between gap-3">
                 <h2 className="font-display text-xl font-semibold text-forest">{beer.name}</h2>
-                <span className="shrink-0 rounded-full bg-gold/15 px-2.5 py-1 text-xs font-semibold text-gold-dark">
-                  {beer.abv}
-                </span>
+                {beer.abv && (
+                  <span className="shrink-0 rounded-full bg-gold/15 px-2.5 py-1 text-xs font-semibold text-gold-dark">
+                    {beer.abv}
+                  </span>
+                )}
               </div>
               <p className="mt-1 text-sm font-medium uppercase tracking-wide text-brick">
                 {beer.style}
               </p>
-              <p className="mt-3 text-sm leading-relaxed text-charcoal/70">{beer.desc}</p>
+              {beer.desc && (
+                <p className="mt-3 text-sm leading-relaxed text-charcoal/70">{beer.desc}</p>
+              )}
               <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-loch">
                 {beer.tag}
               </p>

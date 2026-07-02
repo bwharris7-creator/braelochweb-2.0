@@ -120,4 +120,37 @@ export const menuItem = defineType({
   ],
 });
 
-export const schemaTypes = [menuCategory, menuItem];
+/**
+ * Private-event inquiries submitted from the website form (PLAN.md Phase 3).
+ * Created via the /api/inquiry route; read-only paper trail for staff.
+ */
+export const eventInquiry = defineType({
+  name: "eventInquiry",
+  title: "Private Event Inquiry",
+  type: "document",
+  fields: [
+    defineField({ name: "name", title: "Name", type: "string", readOnly: true }),
+    defineField({ name: "email", title: "Email", type: "string", readOnly: true }),
+    defineField({ name: "phone", title: "Phone", type: "string", readOnly: true }),
+    defineField({ name: "eventDate", title: "Requested Date", type: "string", readOnly: true }),
+    defineField({ name: "headcount", title: "Headcount", type: "string", readOnly: true }),
+    defineField({ name: "eventType", title: "Event Type", type: "string", readOnly: true }),
+    defineField({ name: "message", title: "Message", type: "text", readOnly: true }),
+    defineField({ name: "submittedAt", title: "Submitted", type: "datetime", readOnly: true }),
+    defineField({
+      name: "handled",
+      title: "Handled",
+      type: "boolean",
+      description: "Check off once someone has replied.",
+      initialValue: false,
+    }),
+  ],
+  preview: {
+    select: { title: "name", subtitle: "eventType", handled: "handled" },
+    prepare({ title, subtitle, handled }) {
+      return { title: `${handled ? "✓ " : "● "}${title ?? "Inquiry"}`, subtitle };
+    },
+  },
+});
+
+export const schemaTypes = [menuCategory, menuItem, eventInquiry];

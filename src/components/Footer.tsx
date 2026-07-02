@@ -47,6 +47,11 @@ export default function Footer() {
               </li>
             ))}
             <li>
+              <Link href="/private-events" className="text-cream/80 transition-colors hover:text-cream">
+                Private Events
+              </Link>
+            </li>
+            <li>
               <a
                 href={site.orderUrl}
                 target="_blank"

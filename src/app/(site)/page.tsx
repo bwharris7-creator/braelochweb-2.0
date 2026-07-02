@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import OnTapNow from "@/components/OnTapNow";
 import ThisWeekend from "@/components/ThisWeekend";
 import { site } from "@/lib/site";
 
@@ -50,9 +51,12 @@ export default function Home() {
               Kennett Square, PA
             </p>
             <h1 className="mt-4 font-display text-5xl font-bold leading-tight sm:text-6xl">
-              Craft beer with a<span className="text-gold"> Scottish soul</span>
+              Welcome to your<span className="text-gold"> third place</span>
             </h1>
-            <p className="mt-6 text-xl text-cream/90">{site.tagline}</p>
+            <p className="mt-6 text-xl text-cream/90">
+              Not home. Not work. Craft beer, local food, and good company in a 1903 trolley barn
+              in Kennett Square.
+            </p>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
               <Link
                 href="/beer"
@@ -102,16 +106,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Dynamic module placeholders — wired in Phase 2/3 */}
+      {/* Live modules: taps + events */}
       <section className="bg-cream-dark/50">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
           <div className="grid gap-8 md:grid-cols-2">
-            <div className="rounded-xl border-2 border-dashed border-brick/40 p-8 text-center">
-              <h2 className="font-display text-2xl font-bold text-forest">On Tap Right Now</h2>
-              <p className="mt-2 text-charcoal/60">
-                Live tap list from Untappd lands here in Phase 2.
-              </p>
-            </div>
+            <OnTapNow />
             <ThisWeekend />
           </div>
         </div>

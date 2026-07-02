@@ -5,13 +5,12 @@ import PageHero from "@/components/PageHero";
 export const metadata: Metadata = {
   title: "About — The Braeloch Story",
   description:
-    "The story of Braeloch Brewing: a Scottish-hearted brewery in a historic Kennett Square building.",
+    "Braeloch Brewing: your third place. A family story from Keuka Lake, poured in a 1903 trolley barn in Kennett Square.",
 };
 
 /**
- * About page shell (PLAN.md §4 /about).
- * DESIGN PHASE: story copy is placeholder scaffolding — real copy migrates
- * from the current site's Story/Building History/Brewhouse pages in Phase 0 §9C.
+ * About page (PLAN.md §4 /about) — real copy migrated from the current
+ * site's Story / Building History / Brewhouse pages (2026-07-02).
  */
 
 const gallery = [
@@ -28,32 +27,53 @@ export default function AboutPage() {
     <>
       <PageHero
         eyebrow="Our Story"
-        title="Brae. Loch. Brewing."
-        subtitle="A hillside, a lake, and a very large brick building in Kennett Square."
+        title="Your Third Place"
+        subtitle="Not home. Not work. Somewhere in between — with great craft beer."
       />
 
-      {/* Story */}
+      {/* Story — real copy from the current site */}
       <section className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="prose-lg space-y-6 text-charcoal/80">
+        <div className="space-y-6 text-lg leading-relaxed text-charcoal/80">
           <p>
-            <em>Brae</em> is Scots for hillside. <em>Loch</em>, you know. Put them together and
-            you get the landscape our founders wanted to bottle: unhurried, generous, and best
-            enjoyed in good company.
+            <strong className="text-forest">What is Braeloch?</strong> We hear that question all
+            the time. To us, Braeloch is our third place. It&rsquo;s not home or work but
+            somewhere in between. It&rsquo;s the love of craft beer and enjoying this love with
+            friends, both new and old — a place where community can come for great craft beer,
+            local food, and to hang out and enjoy what life has to offer.
           </p>
           <p>
-            [Design placeholder — the full founding story, the family history, and why Kennett
-            Square, migrated from the current site in the content phase.]
+            The name comes from a family home on Keuka Lake in the Finger Lakes. That home was a
+            gathering place — reunions, relaxing, talking, having fun. A place to unwind and get
+            away from life&rsquo;s worries and the weight of the world. We strive to bring that
+            same experience to Kennett Square.
+          </p>
+          <p>
+            <strong className="text-forest">Who are we?</strong> Owners Kent and Amy Steeves are
+            beer lovers from way back. We met in college over beer, discussed what jobs to accept
+            while drinking beer, and ultimately decided to start our own craft brewery over a
+            beer.
+          </p>
+          <p>
+            As home brewers, we loved to share our beer — in fact, we <em>needed</em> to share our
+            beer so we could make more. In 2017, after much searching, we found our building.
+            &ldquo;Found,&rdquo; as in it took almost two years to make the building our home. On
+            March 1, 2019 we opened our doors, and we&rsquo;ve loved every minute of sharing our
+            passion since.
+          </p>
+          <p className="font-medium text-forest">
+            We hope you&rsquo;ll find Braeloch your third place too — where life is simple, escape
+            is effortless, and every moment feels like Welcome Home.
           </p>
         </div>
       </section>
 
-      {/* Building history */}
+      {/* Building history — real copy */}
       <section className="bg-forest text-cream">
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 sm:px-6 md:grid-cols-2 lg:px-8">
           <div className="relative aspect-[3/2] overflow-hidden rounded-xl shadow-hero">
             <Image
               src="/images/beer-garden.webp"
-              alt="The historic brick building that houses Braeloch"
+              alt="The 1903 trolley barn that houses Braeloch"
               fill
               className="object-cover"
               sizes="(min-width: 768px) 50vw, 100vw"
@@ -64,19 +84,43 @@ export default function AboutPage() {
               The Building
             </p>
             <h2 className="mt-3 font-display text-3xl font-bold sm:text-4xl">
-              A century of brick, now full of beer
+              A 1903 trolley barn, reborn
             </h2>
-            <p className="mt-4 text-lg text-cream/80">
-              [Design placeholder — building history copy: the industrial past of 225 Birch
-              Street, the restoration, the arched windows and exposed brick that give the
-              taproom its bones.]
-            </p>
+            <div className="mt-4 space-y-4 text-cream/80">
+              <p>
+                The building went up in 1903 as a trolley barn for the Interurban train cars that
+                traversed Kennett Square — four garage doors welcomed trolleys in for service.
+                Later it housed the Mushroom Growers Association, supplying growers nationwide
+                with equipment and spores.
+              </p>
+              <p>
+                After a fire in the 1980s and decades of other tenants, Braeloch became just the
+                fourth occupant in the building&rsquo;s history. Eighteen months of construction
+                later, we opened our doors on March 1, 2019.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
+      {/* Brewhouse — real copy */}
+      <section className="mx-auto max-w-3xl px-4 py-16 text-center sm:px-6 lg:px-8">
+        <p className="text-sm font-semibold uppercase tracking-widest text-gold-dark">
+          The Brewhouse
+        </p>
+        <h2 className="mt-3 font-display text-3xl font-bold text-forest">
+          10 barrels, three vessels, endless rotation
+        </h2>
+        <p className="mt-4 text-lg leading-relaxed text-charcoal/70">
+          Braeloch runs a 10bbl, 3-vessel brewhouse designed and built for us in the USA by
+          Practical Fusion in Oregon. The cellar holds four 10bbl fermentors matched by four
+          brite tanks — room to brew multiple batches a week and let lagers condition as long as
+          they need.
+        </p>
+      </section>
+
       {/* Gallery */}
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
         <h2 className="text-center font-display text-3xl font-bold text-forest">
           Around the brewery
         </h2>
@@ -95,13 +139,19 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 3D tour placeholder */}
+      {/* 3D tour — Matterport embed from the current site */}
       <section className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
-        <div className="rounded-xl border-2 border-dashed border-brick/40 p-10 text-center">
-          <h2 className="font-display text-2xl font-bold text-forest">Walk through in 3D</h2>
-          <p className="mt-2 text-charcoal/60">
-            The existing 3D tour embed migrates here from the current site.
-          </p>
+        <h2 className="text-center font-display text-3xl font-bold text-forest">
+          Walk through in 3D
+        </h2>
+        <div className="mt-8 overflow-hidden rounded-xl shadow-card">
+          <iframe
+            title="3D tour of the Braeloch taproom"
+            src="https://my.matterport.com/show/?m=mtEozL4GUo8"
+            className="h-[28rem] w-full border-0 sm:h-[32rem]"
+            allow="fullscreen; vr"
+            loading="lazy"
+          />
         </div>
       </section>
     </>
