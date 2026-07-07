@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import PageHero from "@/components/PageHero";
 import { site } from "@/lib/site";
-import { getTaps } from "@/lib/taps";
+import { getTapMenus, type Tap, type TapMenu } from "@/lib/taps";
 
 export const metadata: Metadata = {
   title: "Beer — What's on Tap",
@@ -10,55 +10,77 @@ export const metadata: Metadata = {
 };
 
 /**
- * Beer page (PLAN.md §4 /beer) — live from Untappd for Business when
- * UNTAPPD_EMAIL/UNTAPPD_API_TOKEN are set; otherwise the sample list below
- * (real Braeloch beers) with a design-preview chip.
+ * Beer page (PLAN.md §4 /beer) — live from the Untappd embed menu, organized
+ * exactly like the source: Beers On Tap → style sections → beers, then
+ * Cans & Bottles. Sample fallback (real Braeloch beers) if the source is down.
  */
 
-const sampleTaps = [
+const sampleMenus: TapMenu[] = [
   {
-    name: "Grace Brewster Hopper",
-    style: "New England IPA",
-    abv: "5.8%",
-    desc: "Hazy, juicy, and soft — a tribute IPA loaded with tropical hop character.",
-    tag: "On Tap",
-  },
-  {
-    name: "Fat Oliver",
-    style: "Belgian Pale Ale",
-    abv: "7.0%",
-    desc: "Fruity Belgian yeast over a biscuity malt base. Deceptively easy drinking.",
-    tag: "On Tap",
-  },
-  {
-    name: "Honey Moon Passion",
-    style: "Honey Golden Ale",
-    abv: "6.8%",
-    desc: "Golden ale brewed with local honey and a whisper of passionfruit.",
-    tag: "On Tap · Cans",
-  },
-  {
-    name: "Further Down the Road",
-    style: "Vienna Lager",
-    abv: "6.0%",
-    desc: "Amber, toasty, clean — a classic Vienna built for long conversations.",
-    tag: "On Tap · Cans",
-  },
-  {
-    name: "Hive Mind",
-    style: "Honey Ale",
-    abv: "5.8%",
-    desc: "Our summer feature, brewed with honey from a local Kennett Square apiary.",
-    tag: "Seasonal",
-  },
-  {
-    name: "Braeloch Scottish Export",
-    style: "Scottish Ale",
-    abv: "5.4%",
-    desc: "The house namesake — caramel depth, gentle smoke, a nod to the old country.",
-    tag: "On Tap",
+    name: "Beers On Tap",
+    sections: [
+      {
+        name: "Sample Preview",
+        items: [
+          { name: "Grace Brewster Hopper", style: "New England IPA", abv: "5.8%", description: "Hazy, juicy, and soft — a tribute IPA loaded with tropical hop character.", labelUrl: null, untappdUrl: null, rating: null },
+          { name: "Fat Oliver", style: "Belgian Pale Ale", abv: "7.0%", description: "Fruity Belgian yeast over a biscuity malt base. Deceptively easy drinking.", labelUrl: null, untappdUrl: null, rating: null },
+          { name: "Further Down the Road", style: "Vienna Lager", abv: "6.0%", description: "Amber, toasty, clean — a classic Vienna built for long conversations.", labelUrl: null, untappdUrl: null, rating: null },
+        ],
+      },
+    ],
   },
 ];
+
+function TapCard({ beer }: { beer: Tap }) {
+  return (
+    <div className="rounded-xl bg-white p-6 shadow-card transition-all hover:-translate-y-1 hover:shadow-card-hover">
+      <div className="flex items-start gap-4">
+        {beer.labelUrl && (
+          <Image
+            src={beer.labelUrl}
+            alt=""
+            width={56}
+            height={56}
+            className="h-14 w-14 shrink-0 rounded-lg object-cover"
+          />
+        )}
+        <div className="min-w-0 flex-1">
+          <div className="flex items-start justify-between gap-3">
+            <h3 className="font-display text-xl font-semibold text-forest">
+              {beer.untappdUrl ? (
+                <a
+                  href={beer.untappdUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors hover:text-gold-dark"
+                >
+                  {beer.name}
+                </a>
+              ) : (
+                beer.name
+              )}
+            </h3>
+            {beer.abv && (
+              <span className="shrink-0 rounded-full bg-gold/15 px-2.5 py-1 text-xs font-semibold text-gold-dark">
+                {beer.abv}
+              </span>
+            )}
+          </div>
+          <p className="mt-1 text-sm font-medium uppercase tracking-wide text-brick">
+            {beer.style}
+          </p>
+        </div>
+      </div>
+      {beer.description && (
+        <p className="mt-3 text-sm leading-relaxed text-charcoal/70">{beer.description}</p>
+      )}
+    </div>
+  );
+}
+
+function slug(s: string) {
+  return s.toLowerCase().replace(/[^a-z]+/g, "-");
+}
 
 const toGo = [
   { format: "16oz Singles & 4-Packs", note: "Mix and match from the cooler" },
@@ -68,16 +90,9 @@ const toGo = [
 ];
 
 export default async function BeerPage() {
-  const liveTaps = await getTaps();
-  const taps = liveTaps?.length
-    ? liveTaps.map((t) => ({
-        name: t.name,
-        style: t.style,
-        abv: t.abv,
-        desc: t.description,
-        tag: t.tag,
-      }))
-    : null;
+  const liveMenus = await getTapMenus();
+  const menus = liveMenus ?? sampleMenus;
+  const live = liveMenus !== null;
 
   return (
     <>
@@ -87,9 +102,9 @@ export default async function BeerPage() {
         subtitle="Brewed on-site in small batches. Plus PA wine, hard cider, seltzers, and Athletic NA beer for the rest of the crew."
       />
 
-      {/* Live/preview notice */}
-      <div className="mx-auto max-w-7xl px-4 pt-8 sm:px-6 lg:px-8">
-        {taps ? (
+      {/* Live/preview notice + menu jump links */}
+      <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-3 px-4 pt-8 sm:px-6 lg:px-8">
+        {live ? (
           <p className="inline-flex items-center gap-2 rounded-full bg-forest/10 px-4 py-1.5 text-xs font-medium text-forest">
             <span className="h-2 w-2 animate-pulse rounded-full bg-gold" aria-hidden />
             Live from Untappd · updates hourly
@@ -97,40 +112,47 @@ export default async function BeerPage() {
         ) : (
           <p className="inline-flex items-center gap-2 rounded-full bg-loch/20 px-4 py-1.5 text-xs font-medium text-forest">
             <span className="h-2 w-2 rounded-full bg-loch" aria-hidden />
-            Design preview — goes live when Untappd connects
+            Sample preview — the live list is taking a quick break
           </p>
         )}
+        {menus.length > 1 &&
+          menus.map((menu) => (
+            <a
+              key={menu.name}
+              href={`#${slug(menu.name)}`}
+              className="rounded-full border border-forest/20 px-4 py-1.5 text-sm font-medium text-forest transition-colors hover:bg-forest hover:text-cream"
+            >
+              {menu.name}
+            </a>
+          ))}
       </div>
 
-      {/* Tap list */}
-      <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {(taps ?? sampleTaps).map((beer) => (
-            <div
-              key={beer.name}
-              className="rounded-xl bg-white p-6 shadow-card transition-all hover:-translate-y-1 hover:shadow-card-hover"
-            >
-              <div className="flex items-start justify-between gap-3">
-                <h2 className="font-display text-xl font-semibold text-forest">{beer.name}</h2>
-                {beer.abv && (
-                  <span className="shrink-0 rounded-full bg-gold/15 px-2.5 py-1 text-xs font-semibold text-gold-dark">
-                    {beer.abv}
-                  </span>
-                )}
-              </div>
-              <p className="mt-1 text-sm font-medium uppercase tracking-wide text-brick">
-                {beer.style}
-              </p>
-              {beer.desc && (
-                <p className="mt-3 text-sm leading-relaxed text-charcoal/70">{beer.desc}</p>
+      {/* Menus → style sections → beers (mirrors the Untappd embed hierarchy) */}
+      {menus.map((menu) => (
+        <section
+          key={menu.name}
+          id={slug(menu.name)}
+          className="mx-auto max-w-7xl scroll-mt-24 px-4 py-10 sm:px-6 lg:px-8"
+        >
+          <h2 className="border-b-2 border-gold/40 pb-3 font-display text-3xl font-bold text-forest">
+            {menu.name}
+          </h2>
+          {menu.sections.map((section) => (
+            <div key={section.name} className="mt-8">
+              {section.name && (
+                <h3 className="text-sm font-semibold uppercase tracking-widest text-brick">
+                  {section.name}
+                </h3>
               )}
-              <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-loch">
-                {beer.tag}
-              </p>
+              <div className="mt-4 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {section.items.map((beer) => (
+                  <TapCard key={beer.name} beer={beer} />
+                ))}
+              </div>
             </div>
           ))}
-        </div>
-      </section>
+        </section>
+      ))}
 
       {/* Slushee callout */}
       <section className="bg-forest text-cream">

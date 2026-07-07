@@ -18,6 +18,8 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "cdn.sanity.io" },
       // Common Ninja event images
       { protocol: "https", hostname: "cdn.commoninja.com" },
+      // Untappd beer label art
+      { protocol: "https", hostname: "labels.untappd.com" },
     ],
   },
 };

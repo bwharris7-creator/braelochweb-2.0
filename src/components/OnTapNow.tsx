@@ -1,12 +1,14 @@
 import Link from "next/link";
-import { getTaps } from "@/lib/taps";
+import { getTapMenus } from "@/lib/taps";
 
 /**
- * Homepage "On Tap Right Now" module (PLAN.md §4) — live from Untappd for
- * Business once connected; until then a warm pointer to the beer page.
+ * Homepage "On Tap Right Now" module (PLAN.md §4) — first pours from the
+ * live "Beers On Tap" menu; warm pointer to the beer page if the source naps.
  */
 export default async function OnTapNow() {
-  const taps = await getTaps();
+  const menus = await getTapMenus();
+  const onTap = menus?.find((m) => m.name.toLowerCase().includes("tap")) ?? menus?.[0];
+  const taps = onTap ? onTap.sections.flatMap((s) => s.items) : null;
 
   return (
     <div className="rounded-xl bg-white p-8 shadow-card">

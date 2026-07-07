@@ -24,11 +24,19 @@ export interface Tap {
   style: string;
   abv: string | null;
   description: string;
-  /** e.g. "On Tap · Hazy IPA" or "On Tap · Cans" contexts joined */
-  tag: string;
   labelUrl: string | null;
   untappdUrl: string | null;
   rating: number | null;
+}
+
+export interface TapSection {
+  name: string; // style group, e.g. "Hazy IPA"
+  items: Tap[];
+}
+
+export interface TapMenu {
+  name: string; // "Beers On Tap" | "Cans & Bottles"
+  sections: TapSection[];
 }
 
 const ENTITIES: Record<string, string> = {
@@ -53,15 +61,8 @@ function stripTags(s: string): string {
   return decode(s.replace(/<[^>]+>/g, " "));
 }
 
-/** Shorten UTFB menu names to compact display tags. */
-function menuTag(menuName: string): string {
-  const n = menuName.toLowerCase();
-  if (n.includes("tap")) return "On Tap";
-  if (n.includes("can") || n.includes("bottle")) return "Cans";
-  return menuName;
-}
-
-export async function getTaps(): Promise<Tap[] | null> {
+/** Menus → style sections → beers, mirroring the UTFB embed's hierarchy. */
+export async function getTapMenus(): Promise<TapMenu[] | null> {
   let html: string;
   try {
     const res = await fetch(EMBED_URL, { next: { revalidate: REVALIDATE_SECONDS } });
@@ -95,42 +96,43 @@ export async function getTaps(): Promise<Tap[] | null> {
     return { menu, section };
   };
 
-  // Item blocks — dedupe beers that appear on both menus (taps + cans),
-  // collecting each menu context; section comes from the first appearance.
-  type Acc = Omit<Tap, "tag"> & { menus: Set<string>; section: string };
-  const byName = new Map<string, Acc>();
+  // Group items under their menu → section context, preserving embed order.
+  const menus: TapMenu[] = [];
+  const menuFor = (name: string): TapMenu => {
+    let menu = menus.find((m) => m.name === name);
+    if (!menu) {
+      menu = { name, sections: [] };
+      menus.push(menu);
+    }
+    return menu;
+  };
+
   const itemRe = /<div class="item-bg-color menu-item clearfix">([\s\S]*?)(?=<div class="item-bg-color menu-item clearfix">|$)/g;
   for (const m of html.matchAll(itemRe)) {
     const block = m[1];
     const name = block.match(/class="item-name"[\s\S]*?<span[^>]*>([^<]+)</)?.[1];
     if (!name) continue;
-    const { menu, section } = context(m.index!);
+    const { menu: menuName, section: sectionName } = context(m.index!);
+    if (!menuName) continue;
 
-    const key = decode(name);
-    const existing = byName.get(key);
-    if (existing) {
-      existing.menus.add(menuTag(menu));
-      continue;
+    const menu = menuFor(menuName);
+    let section = menu.sections.find((s) => s.name === sectionName);
+    if (!section) {
+      section = { name: sectionName, items: [] };
+      menu.sections.push(section);
     }
 
     const ratingRaw = block.match(/class="rating small r(\d+)"/)?.[1];
-    byName.set(key, {
-      name: key,
+    section.items.push({
+      name: decode(name),
       style: decode(block.match(/class="item-category">([^<]+)</)?.[1] ?? ""),
       abv: block.match(/class="item-abv">([^<]+)</)?.[1]?.replace(/\s*ABV\s*/i, "").trim() || null,
       description: stripTags(block.match(/class="[^"]*show-less[^"]*"[^>]*>([\s\S]*?)<\/p>/)?.[1] ?? ""),
       labelUrl: block.match(/<img src="(https:\/\/labels\.untappd\.com\/[^"]+)"/)?.[1] ?? null,
       untappdUrl: block.match(/href="(https:\/\/untappd\.com\/b\/[^"]+)"/)?.[1] ?? null,
       rating: ratingRaw ? Number(ratingRaw) / 100 : null,
-      menus: new Set([menuTag(menu)]),
-      section,
     });
   }
 
-  const taps: Tap[] = [...byName.values()].map(({ menus, section, ...t }) => ({
-    ...t,
-    tag: [...menus, section].filter(Boolean).join(" · "),
-  }));
-
-  return taps.length > 0 ? taps : null;
+  return menus.length > 0 ? menus : null;
 }
