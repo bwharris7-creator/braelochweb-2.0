@@ -217,10 +217,16 @@ Home live-hub, social strip, gallery + 3D tour, private-events form, newsletter,
 heritage; homepage hero corrected accordingly), Matterport tour embed, `/private-events` page +
 inquiry form → Sanity `eventInquiry` docs in `/studio` (needs a server-only
 `SANITY_API_WRITE_TOKEN` env var — new Editor token — in `.env.local` + Vercel; mailto fallback
-until then). **Untappd tap module built** (`src/lib/taps.ts`, UTFB API adapter): goes live when
-`UNTAPPD_EMAIL` + `UNTAPPD_API_TOKEN` (business.untappd.com → API access token) are set.
-Note: scraping untappd.com directly was rejected (AJAX requires session + ToS). Still open:
-Instagram strip (needs Meta app/token), newsletter.
+until then). ✅ **Untappd tap list LIVE 2026-07-07** — no tokens, no Premium. UTFB's REST API turned out to
+be Premium-gated (`PremiumRequiredError`; the API Access page tokens authenticate but can't
+list locations). Solution: the plan-included **public embed menu** —
+`business.untappd.com/locations/21932/themes/83553/js` (ids from UTFB → Embed Menus'
+`PreloadEmbedMenu` call; note location id 21932 ≠ the 24484 in dashboard URLs) — contains the
+full rendered menu HTML. `src/lib/taps.ts` fetches it server-side (hourly ISR), parses
+name/style/ABV/description/label/Untappd-link/rating, dedupes across the "Beers On Tap" +
+"Cans & Bottles" menus, renders in our components. Kent's staff keep updating Untappd exactly
+as they do today. Verified live in prod: 18 beers. Still open: Instagram strip (needs Meta
+app/token), newsletter.
 
 **Phase 4 — Growth (optional)**
 Merch / beer-to-go shop, tighter Arryved integration, loyalty/email automation.
