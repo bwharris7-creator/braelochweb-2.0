@@ -75,7 +75,7 @@ export default async function BeerPage() {
         style: t.style,
         abv: t.abv,
         desc: t.description,
-        tag: t.section,
+        tag: t.tag,
       }))
     : null;
 

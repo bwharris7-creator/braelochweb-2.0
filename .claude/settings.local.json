@@ -77,7 +77,15 @@
       "Bash(curl -s -o /dev/null -w \"base: %{http_code}\\\\n\" \"https://commerce.arryved.com/location/BOJuuMkO/\")",
       "Bash(curl -s -o /dev/null -w \"pickup: %{http_code}\\\\n\" \"https://commerce.arryved.com/location/BOJuuMkO/modality/pickup/\")",
       "Bash(git commit -q -m 'Wire real Arryved pickup URL \\(verified from current site\\) *)",
-      "Bash(curl -s https://braeloch.vercel.app/)"
+      "Bash(curl -s https://braeloch.vercel.app/)",
+      "Bash(gh auth *)",
+      "Bash(brew install *)",
+      "Read(//Users/harris/.ssh/**)",
+      "Bash(ssh -T git@github.com -o BatchMode=yes -o ConnectTimeout=5)",
+      "Bash(git remote *)",
+      "Bash(git push *)",
+      "Bash(git ls-remote *)",
+      "WebFetch(domain:docs.business.untappd.com)"
     ]
   }
 }
