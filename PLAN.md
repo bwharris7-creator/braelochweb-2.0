@@ -236,8 +236,19 @@ Merch / beer-to-go shop, tighter Arryved integration, loyalty/email automation.
 Content migration, redirects from old URLs, QA on real devices, analytics, DNS cutover.
 ✅ **Deployed to Vercel 2026-07-01: https://braeloch.vercel.app** (project `braeloch`, Hobby
 plan, Sanity env vars set for prod+preview, all routes + live menu/events verified in prod).
-Remaining deploy tasks: add `https://braeloch.vercel.app` as a Sanity CORS origin (so `/studio`
-works on the deployed site), then at launch add the real domain + DNS cutover.
+✅ Sanity CORS for the prod URL added; `/studio` works deployed (employee invited 2026-07-09).
+
+**DNS-cutover day checklist (one sitting, decided 2026-07-09):**
+1. Point `braelochbrewing.beer` at Vercel (add domain in Vercel project → set records at DNS host).
+2. Create Resend account + verify domain (add DKIM/SPF records in the same DNS session) →
+   set `RESEND_API_KEY` in `.env.local` + Vercel. `INQUIRY_ALERT_TO=Kim@braelochbrewing.beer`
+   is already set (events coordinator, prod+preview). Then test: submit prod inquiry → confirm
+   Kim's inbox gets the alert (reply-to = customer).
+3. Add `https://braelochbrewing.beer` (and `www`) as Sanity CORS origins.
+4. Upgrade Vercel to Pro (commercial use); confirm noindex header no longer matches (real
+   domain gets indexed automatically).
+5. Verify redirects on the real domain, resubmit sitemap in Google Search Console.
+6. Cancel Squarespace hosting (domain registration stays wherever it lives).
 
 ---
 
