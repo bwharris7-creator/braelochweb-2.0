@@ -215,9 +215,10 @@ time add the env vars in Vercel + the production domain as a CORS origin.
 Home live-hub, social strip, gallery + 3D tour, private-events form, newsletter, full SEO/JSON-LD.
 ✅ **Shipped 2026-07-02:** real About copy (third-place story, Keuka Lake namesake — NOT Scottish
 heritage; homepage hero corrected accordingly), Matterport tour embed, `/private-events` page +
-inquiry form → Sanity `eventInquiry` docs in `/studio` (needs a server-only
-`SANITY_API_WRITE_TOKEN` env var — new Editor token — in `.env.local` + Vercel; mailto fallback
-until then). ✅ **Untappd tap list LIVE 2026-07-07** — no tokens, no Premium. UTFB's REST API turned out to
+inquiry form → Sanity `eventInquiry` docs in `/studio`. ✅ **ACTIVE 2026-07-09:**
+`website-forms` Editor token set in `.env.local` + Vercel (prod+preview); end-to-end verified
+locally and in prod (test inquiries created → visible via API → deleted). Inquiries appear in
+`/studio` under "Private Event Inquiries" with a `handled` checkbox. ✅ **Untappd tap list LIVE 2026-07-07** — no tokens, no Premium. UTFB's REST API turned out to
 be Premium-gated (`PremiumRequiredError`; the API Access page tokens authenticate but can't
 list locations). Solution: the plan-included **public embed menu** —
 `business.untappd.com/locations/21932/themes/83553/js` (ids from UTFB → Embed Menus'
