@@ -150,21 +150,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 3D tour — Matterport embed from the current site */}
-      <section className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
-        <h2 className="text-center font-display text-3xl font-bold text-forest">
-          Walk through in 3D
-        </h2>
-        <div className="mt-8 overflow-hidden rounded-xl shadow-card">
-          <iframe
-            title="3D tour of the Braeloch taproom"
-            src="https://my.matterport.com/show/?m=mtEozL4GUo8"
-            className="h-[28rem] w-full border-0 sm:h-[32rem]"
-            allow="fullscreen; vr"
-            loading="lazy"
-          />
-        </div>
-      </section>
     </>
   );
 }
