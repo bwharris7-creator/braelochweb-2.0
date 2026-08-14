@@ -30,7 +30,7 @@ export default function Header() {
         </Link>
 
         {/* Desktop nav */}
-        <div className="hidden items-center gap-6 md:flex">
+        <div className="hidden items-center gap-6 lg:flex">
           {nav.map((item) => (
             <Link
               key={item.href}
@@ -54,7 +54,7 @@ export default function Header() {
         {/* Mobile toggle */}
         <button
           type="button"
-          className="text-charcoal md:hidden"
+          className="text-charcoal lg:hidden"
           aria-expanded={menuOpen}
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           onClick={() => setMenuOpen((v) => !v)}
@@ -71,7 +71,7 @@ export default function Header() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="border-t border-cream-dark bg-cream px-4 pb-6 pt-4 md:hidden">
+        <div className="border-t border-cream-dark bg-cream px-4 pb-6 pt-4 lg:hidden">
           <OpenNowPill className="mb-4" />
           <div className="flex flex-col gap-1">
             {nav.map((item) => (

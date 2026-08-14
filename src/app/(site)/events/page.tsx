@@ -93,11 +93,17 @@ export default async function EventsPage() {
         />
       )}
 
-      <div className="mx-auto max-w-7xl px-4 pt-8 sm:px-6 lg:px-8">
+      <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-3 px-4 pt-8 sm:px-6 lg:px-8">
         <p className="inline-flex items-center gap-2 rounded-full bg-forest/10 px-4 py-1.5 text-xs font-medium text-forest">
           <span className="h-2 w-2 animate-pulse rounded-full bg-gold" aria-hidden />
           Live from our events calendar · updates hourly
         </p>
+        <Link
+          href="/private-events"
+          className="rounded-full border border-forest/20 px-4 py-1.5 text-sm font-medium text-forest transition-colors hover:bg-forest hover:text-cream"
+        >
+          Hosting your own? Book a private event →
+        </Link>
       </div>
 
       <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">

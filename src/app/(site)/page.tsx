@@ -115,6 +115,38 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Private events — booking entry point */}
+      <section className="relative text-cream">
+        <Image
+          src="/images/bowling-alley.webp"
+          alt="The Bowling Alley Room set for a private party"
+          fill
+          className="object-cover"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-charcoal/75" aria-hidden />
+        <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+          <div className="max-w-2xl">
+            <p className="text-sm font-semibold uppercase tracking-widest text-gold">
+              Private Events
+            </p>
+            <h2 className="mt-3 font-display text-3xl font-bold sm:text-4xl">
+              Hosting something? We&rsquo;ve got the room.
+            </h2>
+            <p className="mt-4 text-lg text-cream/90">
+              Birthdays, rehearsal dinners, corporate happy hours, showers — three spaces for
+              parties from 10 to 100+ guests, starting at no rental fee.
+            </p>
+            <Link
+              href="/private-events"
+              className="mt-8 inline-block rounded-md bg-gold px-8 py-3 font-semibold text-forest transition-all hover:-translate-y-1 hover:bg-gold-dark hover:shadow-card-hover"
+            >
+              Book Your Event
+            </Link>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
