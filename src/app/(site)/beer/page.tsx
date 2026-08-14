@@ -129,6 +129,14 @@ export default async function BeerPage() {
               {menu.name}
             </a>
           ))}
+        {beverages.length > 0 && (
+          <a
+            href="#not-drinking-beer"
+            className="rounded-full border border-forest/20 px-4 py-1.5 text-sm font-medium text-forest transition-colors hover:bg-forest hover:text-cream"
+          >
+            Not Drinking Beer?
+          </a>
+        )}
       </div>
 
       {/* Menus → style sections → beers (mirrors the Untappd embed hierarchy) */}
@@ -159,7 +167,8 @@ export default async function BeerPage() {
       ))}
 
       {/* Beyond the beer — wine, cider, seltzer, specialty, non-alcoholic */}
-      <section className="bg-cream-dark/40">
+      {beverages.length > 0 && (
+      <section id="not-drinking-beer" className="scroll-mt-20 bg-cream-dark/40">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <h2 className="text-center font-display text-3xl font-bold text-forest">
             Not drinking beer?
@@ -203,6 +212,7 @@ export default async function BeerPage() {
           </div>
         </div>
       </section>
+      )}
 
       {/* Slushee callout */}
       <section className="bg-forest text-cream">

@@ -46,8 +46,8 @@ export const hoursDisplay = [
 ];
 
 export const nav = [
-  { label: "Beer", href: "/beer" },
-  { label: "Food", href: "/food" },
+  { label: "Let’s Drink", href: "/beer" },
+  { label: "Let’s Eat", href: "/food" },
   { label: "Events", href: "/events" },
   { label: "About", href: "/about" },
   { label: "Visit", href: "/visit" },
