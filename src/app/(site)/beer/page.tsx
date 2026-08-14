@@ -3,6 +3,7 @@ import Image from "next/image";
 import PageHero from "@/components/PageHero";
 import { site } from "@/lib/site";
 import { getTapMenus, type Tap, type TapMenu } from "@/lib/taps";
+import { getBeverages } from "@/lib/beverages";
 
 export const metadata: Metadata = {
   title: "Beer — What's on Tap",
@@ -90,7 +91,10 @@ const toGo = [
 ];
 
 export default async function BeerPage() {
-  const liveMenus = await getTapMenus();
+  const [liveMenus, { categories: beverages }] = await Promise.all([
+    getTapMenus(),
+    getBeverages(),
+  ]);
   const menus = liveMenus ?? sampleMenus;
   const live = liveMenus !== null;
 
@@ -153,6 +157,52 @@ export default async function BeerPage() {
           ))}
         </section>
       ))}
+
+      {/* Beyond the beer — wine, cider, seltzer, specialty, non-alcoholic */}
+      <section className="bg-cream-dark/40">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+          <h2 className="text-center font-display text-3xl font-bold text-forest">
+            Not drinking beer?
+          </h2>
+          <p className="mt-2 text-center text-charcoal/60">
+            PA wine, cider, seltzer, and plenty for the designated driver.
+          </p>
+          <div className="mt-10 grid gap-8 md:grid-cols-2">
+            {(["alcohol", "non-alcohol"] as const).map((group) => {
+              const cats = beverages.filter((c) => c.group === group);
+              if (cats.length === 0) return null;
+              return (
+                <div key={group} className="rounded-xl bg-white p-8 shadow-card">
+                  <h3 className="font-display text-2xl font-bold text-forest">
+                    {group === "alcohol" ? "Alcohol Beverages" : "Non-Alcohol Beverages"}
+                  </h3>
+                  <div className="mt-6 space-y-6">
+                    {cats.map((cat) => (
+                      <div key={cat.title}>
+                        {cats.length > 1 && (
+                          <h4 className="text-xs font-bold uppercase tracking-widest text-brick">
+                            {cat.title}
+                          </h4>
+                        )}
+                        <ul className="mt-2 space-y-2">
+                          {cat.items.map((item) => (
+                            <li key={item.name} className="text-charcoal/80">
+                              <span className="font-medium text-charcoal">{item.name}</span>
+                              {item.detail && (
+                                <span className="text-charcoal/60">: {item.detail}</span>
+                              )}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
       {/* Slushee callout */}
       <section className="bg-forest text-cream">

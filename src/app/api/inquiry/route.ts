@@ -35,9 +35,13 @@ export async function POST(req: Request) {
     name,
     email,
     phone: field("phone"),
-    eventDate: field("eventDate"),
-    headcount: field("headcount"),
+    company: field("company"),
+    textConsent: field("textConsent"),
     eventType: field("eventType"),
+    eventDate: field("eventDate"),
+    eventStartTime: field("eventStartTime"),
+    headcount: field("headcount"),
+    budget: field("budget"),
     message: field("message"),
     submittedAt: new Date().toISOString(),
     handled: false,
@@ -68,9 +72,13 @@ async function sendAlert(doc: {
   name: string;
   email: string;
   phone: string;
-  eventDate: string;
-  headcount: string;
+  company: string;
+  textConsent: string;
   eventType: string;
+  eventDate: string;
+  eventStartTime: string;
+  headcount: string;
+  budget: string;
   message: string;
 }) {
   const apiKey = process.env.RESEND_API_KEY;
@@ -88,17 +96,21 @@ async function sendAlert(doc: {
       from,
       to: to.split(",").map((s) => s.trim()),
       reply_to: doc.email,
-      subject: `New private event inquiry — ${doc.name}${doc.eventType ? ` (${doc.eventType})` : ""}`,
+      subject: `Special Event Request — ${doc.name}${doc.eventType ? ` (${doc.eventType})` : ""}${doc.eventDate ? ` · ${doc.eventDate}` : ""}`,
       html: `
         <div style="font-family:sans-serif;color:#211e1b;max-width:560px">
-          <h2 style="color:#1f3d2b">New private event inquiry</h2>
+          <h2 style="color:#1f3d2b">New Special Event Request</h2>
           <table style="border-collapse:collapse">
-            ${row("Name", doc.name)}
+            ${row("Contact name", doc.name)}
+            ${row("Company", doc.company)}
             ${row("Email", doc.email)}
             ${row("Phone", doc.phone)}
-            ${row("Requested date", doc.eventDate)}
-            ${row("Headcount", doc.headcount)}
+            ${row("OK to text?", doc.textConsent)}
             ${row("Event type", doc.eventType)}
+            ${row("Requested date", doc.eventDate)}
+            ${row("Start time", doc.eventStartTime)}
+            ${row("Number of guests", doc.headcount)}
+            ${row("Estimated budget", doc.budget)}
           </table>
           ${doc.message ? `<p style="white-space:pre-line;border-left:3px solid #c3a126;padding-left:12px">${doc.message}</p>` : ""}
           <p style="color:#6b4632;font-size:13px">Reply directly to this email to answer ${doc.name}.

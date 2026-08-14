@@ -33,6 +33,16 @@ export default defineConfig({
                     S.documentTypeListItem("menuCategory").title("Categories"),
                   ])
               ),
+            S.listItem()
+              .title("Beverages")
+              .child(
+                S.list()
+                  .title("Beverages")
+                  .items([
+                    S.documentTypeListItem("beverageItem").title("Beverages"),
+                    S.documentTypeListItem("beverageCategory").title("Categories"),
+                  ])
+              ),
             S.documentTypeListItem("eventInquiry").title("Private Event Inquiries"),
           ]),
     }),
