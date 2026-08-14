@@ -1,0 +1,950 @@
+{
+  "project": "byjohnwx",
+  "dataset": "production",
+  "exportedAt": "2026-08-14T14:13:25.444Z",
+  "documents": [
+    {
+      "_createdAt": "2026-07-10T00:42:26Z",
+      "_id": "0bf96a60-0a4a-4137-a9c8-8f4e42be6692",
+      "_rev": "kiD9Iu4HJOVfwklchHoYhd",
+      "_type": "menuItem",
+      "_updatedAt": "2026-07-10T01:07:53Z",
+      "available": true,
+      "category": {
+        "_ref": "menuCategory-tacos",
+        "_type": "reference"
+      },
+      "description": "blackened chicken, sautéed onions, cheddar jack.  served in a flour tortilla, shredded lettuce, pico de gallo + sour cream on the side",
+      "name": "Chicken Quesadilla",
+      "order": 100
+    },
+    {
+      "_createdAt": "2026-08-14T13:34:15Z",
+      "_id": "beverageCategory-ciders-seltzers",
+      "_rev": "Z1JR1oXzRzadyqCGwoZKzT",
+      "_type": "beverageCategory",
+      "_updatedAt": "2026-08-14T13:34:15Z",
+      "group": "alcohol",
+      "order": 2,
+      "title": "Ciders & Seltzers"
+    },
+    {
+      "_createdAt": "2026-08-14T13:34:15Z",
+      "_id": "beverageCategory-non-alcohol",
+      "_rev": "Z1JR1oXzRzadyqCGwoZKzT",
+      "_type": "beverageCategory",
+      "_updatedAt": "2026-08-14T13:34:15Z",
+      "group": "non-alcohol",
+      "order": 1,
+      "title": "Non-Alcohol"
+    },
+    {
+      "_createdAt": "2026-08-14T13:34:15Z",
+      "_id": "beverageCategory-pa-wine",
+      "_rev": "Z1JR1oXzRzadyqCGwoZKzT",
+      "_type": "beverageCategory",
+      "_updatedAt": "2026-08-14T13:34:15Z",
+      "group": "alcohol",
+      "order": 1,
+      "title": "Pennsylvania Wine"
+    },
+    {
+      "_createdAt": "2026-08-14T13:34:15Z",
+      "_id": "beverageCategory-specialty",
+      "_rev": "Z1JR1oXzRzadyqCGwoZKzT",
+      "_type": "beverageCategory",
+      "_updatedAt": "2026-08-14T13:34:15Z",
+      "group": "alcohol",
+      "order": 3,
+      "title": "Specialty Drinks"
+    },
+    {
+      "_createdAt": "2026-08-14T13:34:15Z",
+      "_id": "beverageItem-athletic",
+      "_rev": "Z1JR1oXzRzadyqCGwoZKzT",
+      "_type": "beverageItem",
+      "_updatedAt": "2026-08-14T13:34:15Z",
+      "available": true,
+      "category": {
+        "_ref": "beverageCategory-non-alcohol",
+        "_type": "reference"
+      },
+      "detail": "Guinness '0'",
+      "name": "Athletic Brewing Co. Non-Alcohol Beer",
+      "order": 1
+    },
+    {
+      "_createdAt": "2026-08-14T13:34:15Z",
+      "_id": "beverageItem-boylan",
+      "_rev": "Z1JR1oXzRzadyqCGwoZKzT",
+      "_type": "beverageItem",
+      "_updatedAt": "2026-08-14T13:34:15Z",
+      "available": true,
+      "category": {
+        "_ref": "beverageCategory-non-alcohol",
+        "_type": "reference"
+      },
+      "detail": "Root Beer, Ginger Ale, Creme, Orange, Shirley Temple",
+      "name": "Boylan Craft Sodas",
+      "order": 5
+    },
+    {
+      "_createdAt": "2026-08-14T13:34:15Z",
+      "_id": "beverageItem-brisk",
+      "_rev": "Z1JR1oXzRzadyqCGwoZKzT",
+      "_type": "beverageItem",
+      "_updatedAt": "2026-08-14T13:34:15Z",
+      "available": true,
+      "category": {
+        "_ref": "beverageCategory-non-alcohol",
+        "_type": "reference"
+      },
+      "name": "Brisk Iced Tea",
+      "order": 4
+    },
+    {
+      "_createdAt": "2026-08-14T13:34:15Z",
+      "_id": "beverageItem-britain-hill",
+      "_rev": "Z1JR1oXzRzadyqCGwoZKzT",
+      "_type": "beverageItem",
+      "_updatedAt": "2026-08-14T13:34:15Z",
+      "available": true,
+      "category": {
+        "_ref": "beverageCategory-pa-wine",
+        "_type": "reference"
+      },
+      "detail": "Sangria, Pinot Grigio",
+      "name": "Britain Hill Winery",
+      "order": 2
+    },
+    {
+      "_createdAt": "2026-08-14T13:34:15Z",
+      "_id": "beverageItem-fountain-soda",
+      "_rev": "Z1JR1oXzRzadyqCGwoZKzT",
+      "_type": "beverageItem",
+      "_updatedAt": "2026-08-14T13:34:15Z",
+      "available": true,
+      "category": {
+        "_ref": "beverageCategory-non-alcohol",
+        "_type": "reference"
+      },
+      "name": "Coke, Diet Coke, Sprite",
+      "order": 3
+    },
+    {
+      "_createdAt": "2026-08-14T13:34:15Z",
+      "_id": "beverageItem-honest-juice",
+      "_rev": "Z1JR1oXzRzadyqCGwoZKzT",
+      "_type": "beverageItem",
+      "_updatedAt": "2026-08-14T13:34:15Z",
+      "available": true,
+      "category": {
+        "_ref": "beverageCategory-non-alcohol",
+        "_type": "reference"
+      },
+      "name": "Honest Juice Pouches",
+      "order": 6
+    },
+    {
+      "_createdAt": "2026-08-14T13:34:15Z",
+      "_id": "beverageItem-horizon-milk",
+      "_rev": "Z1JR1oXzRzadyqCGwoZKzT",
+      "_type": "beverageItem",
+      "_updatedAt": "2026-08-14T13:34:15Z",
+      "available": true,
+      "category": {
+        "_ref": "beverageCategory-non-alcohol",
+        "_type": "reference"
+      },
+      "name": "Horizon Milk Boxes",
+      "order": 7
+    },
+    {
+      "_createdAt": "2026-08-14T13:34:15Z",
+      "_id": "beverageItem-la-croix",
+      "_rev": "Z1JR1oXzRzadyqCGwoZKzT",
+      "_type": "beverageItem",
+      "_updatedAt": "2026-08-14T13:34:15Z",
+      "available": true,
+      "category": {
+        "_ref": "beverageCategory-non-alcohol",
+        "_type": "reference"
+      },
+      "name": "La Croix Seltzer",
+      "order": 2
+    },
+    {
+      "_createdAt": "2026-08-14T13:34:15Z",
+      "_id": "beverageItem-not-pizza",
+      "_rev": "Z1JR1oXzRzadyqCGwoZKzT",
+      "_type": "beverageItem",
+      "_updatedAt": "2026-08-14T13:34:15Z",
+      "available": true,
+      "category": {
+        "_ref": "beverageCategory-ciders-seltzers",
+        "_type": "reference"
+      },
+      "name": "Not Pizza Vodka Beverages",
+      "order": 4
+    },
+    {
+      "_createdAt": "2026-08-14T13:34:15Z",
+      "_id": "beverageItem-penns-woods",
+      "_rev": "Z1JR1oXzRzadyqCGwoZKzT",
+      "_type": "beverageItem",
+      "_updatedAt": "2026-08-14T13:34:15Z",
+      "available": true,
+      "category": {
+        "_ref": "beverageCategory-pa-wine",
+        "_type": "reference"
+      },
+      "detail": "Cabernet Sauvignon, Pinot Noir, Rose, Chardonnay",
+      "name": "Penns Woods Winery",
+      "order": 1
+    },
+    {
+      "_createdAt": "2026-08-14T13:34:15Z",
+      "_id": "beverageItem-punch-berry-slushee",
+      "_rev": "Z1JR1oXzRzadyqCGwoZKzT",
+      "_type": "beverageItem",
+      "_updatedAt": "2026-08-14T13:34:15Z",
+      "available": true,
+      "category": {
+        "_ref": "beverageCategory-specialty",
+        "_type": "reference"
+      },
+      "name": "Punch Berry Wine Slushee",
+      "order": 1
+    },
+    {
+      "_createdAt": "2026-08-14T13:34:15Z",
+      "_id": "beverageItem-rose-lemon-breeze",
+      "_rev": "Z1JR1oXzRzadyqCGwoZKzT",
+      "_type": "beverageItem",
+      "_updatedAt": "2026-08-14T13:34:15Z",
+      "available": true,
+      "category": {
+        "_ref": "beverageCategory-specialty",
+        "_type": "reference"
+      },
+      "name": "Rose Lemon Breeze",
+      "order": 2
+    },
+    {
+      "_createdAt": "2026-08-14T13:34:15Z",
+      "_id": "beverageItem-stateside",
+      "_rev": "Z1JR1oXzRzadyqCGwoZKzT",
+      "_type": "beverageItem",
+      "_updatedAt": "2026-08-14T13:34:15Z",
+      "available": true,
+      "category": {
+        "_ref": "beverageCategory-ciders-seltzers",
+        "_type": "reference"
+      },
+      "name": "Stateside Vodka Seltzers",
+      "order": 2
+    },
+    {
+      "_createdAt": "2026-08-14T13:34:15Z",
+      "_id": "beverageItem-surfside",
+      "_rev": "Z1JR1oXzRzadyqCGwoZKzT",
+      "_type": "beverageItem",
+      "_updatedAt": "2026-08-14T13:34:15Z",
+      "available": true,
+      "category": {
+        "_ref": "beverageCategory-ciders-seltzers",
+        "_type": "reference"
+      },
+      "name": "Surfside Vodka Teas",
+      "order": 3
+    },
+    {
+      "_createdAt": "2026-08-14T13:34:15Z",
+      "_id": "beverageItem-wyndridge",
+      "_rev": "Z1JR1oXzRzadyqCGwoZKzT",
+      "_type": "beverageItem",
+      "_updatedAt": "2026-08-14T13:34:15Z",
+      "available": true,
+      "category": {
+        "_ref": "beverageCategory-ciders-seltzers",
+        "_type": "reference"
+      },
+      "name": "Wyndridge Crafty Ciders",
+      "order": 1
+    },
+    {
+      "_createdAt": "2026-07-02T09:43:13Z",
+      "_id": "menuCategory-desserts",
+      "_rev": "37hNSegHf4NtjSKr1jc7aQ",
+      "_type": "menuCategory",
+      "_updatedAt": "2026-07-02T09:43:13Z",
+      "order": 8,
+      "title": "Desserts"
+    },
+    {
+      "_createdAt": "2026-07-02T09:43:13Z",
+      "_id": "menuCategory-flatbreads",
+      "_rev": "LeJgS4V95QilRSQVSE44u2",
+      "_system": {
+        "base": {
+          "id": "menuCategory-flatbreads",
+          "rev": "37hNSegHf4NtjSKr1jc7aQ"
+        }
+      },
+      "_type": "menuCategory",
+      "_updatedAt": "2026-07-10T00:40:09Z",
+      "order": 4,
+      "title": "Flatbread"
+    },
+    {
+      "_createdAt": "2026-07-02T09:43:13Z",
+      "_id": "menuCategory-frittes",
+      "_rev": "LeJgS4V95QilRSQVSE480X",
+      "_system": {
+        "base": {
+          "id": "menuCategory-frittes",
+          "rev": "37hNSegHf4NtjSKr1jc7aQ"
+        }
+      },
+      "_type": "menuCategory",
+      "_updatedAt": "2026-07-10T00:40:21Z",
+      "order": 2,
+      "title": "Fried Potatoes"
+    },
+    {
+      "_createdAt": "2026-07-02T09:43:13Z",
+      "_id": "menuCategory-handhelds",
+      "_rev": "kiD9Iu4HJOVfwklchHdwh7",
+      "_system": {
+        "base": {
+          "id": "menuCategory-handhelds",
+          "rev": "37hNSegHf4NtjSKr1jc7aQ"
+        }
+      },
+      "_type": "menuCategory",
+      "_updatedAt": "2026-07-10T00:40:32Z",
+      "note": "Served on a brioche bun with kettle chips · substitute fries $3 / salad $4",
+      "order": 6,
+      "title": "Handheld"
+    },
+    {
+      "_createdAt": "2026-07-02T09:43:13Z",
+      "_id": "menuCategory-kids",
+      "_rev": "37hNSegHf4NtjSKr1jc7aQ",
+      "_type": "menuCategory",
+      "_updatedAt": "2026-07-02T09:43:13Z",
+      "note": "12 years and under",
+      "order": 7,
+      "title": "Kids"
+    },
+    {
+      "_createdAt": "2026-07-02T09:43:13Z",
+      "_id": "menuCategory-salads",
+      "_rev": "kiD9Iu4HJOVfwklchHeBV5",
+      "_system": {
+        "base": {
+          "id": "menuCategory-salads",
+          "rev": "37hNSegHf4NtjSKr1jc7aQ"
+        }
+      },
+      "_type": "menuCategory",
+      "_updatedAt": "2026-07-10T00:41:55Z",
+      "note": "Add-ons: chicken / cajun shrimp",
+      "order": 3,
+      "title": "Salad Bowl"
+    },
+    {
+      "_createdAt": "2026-07-02T09:43:13Z",
+      "_id": "menuCategory-shareables",
+      "_rev": "JyPHzVy4YBXWnHjU2YSD8I",
+      "_system": {
+        "base": {
+          "id": "menuCategory-shareables",
+          "rev": "37hNSegHf4NtjSKr1jc7aQ"
+        }
+      },
+      "_type": "menuCategory",
+      "_updatedAt": "2026-07-10T00:41:04Z",
+      "order": 1,
+      "title": "Shareable"
+    },
+    {
+      "_createdAt": "2026-07-02T09:43:13Z",
+      "_id": "menuCategory-tacos",
+      "_rev": "LeJgS4V95QilRSQVSEIF0X",
+      "_system": {
+        "base": {
+          "id": "menuCategory-tacos",
+          "rev": "JyPHzVy4YBXWnHjU2YSCny"
+        }
+      },
+      "_type": "menuCategory",
+      "_updatedAt": "2026-07-10T01:25:55Z",
+      "order": 5,
+      "title": "Mexi-Cali"
+    },
+    {
+      "_createdAt": "2026-07-02T09:43:13Z",
+      "_id": "menuItem-black-bean-burger",
+      "_rev": "JyPHzVy4YBXWnHjU2YREvi",
+      "_system": {
+        "base": {
+          "id": "menuItem-black-bean-burger",
+          "rev": "37hNSegHf4NtjSKr1jc7aQ"
+        }
+      },
+      "_type": "menuItem",
+      "_updatedAt": "2026-07-10T00:27:31Z",
+      "available": true,
+      "category": {
+        "_ref": "menuCategory-handhelds",
+        "_type": "reference"
+      },
+      "description": "spring mix, tomato, avocado spread, chipotle mayo",
+      "dietaryTags": [
+        "V"
+      ],
+      "name": "Black Bean Burger",
+      "order": 4
+    },
+    {
+      "_createdAt": "2026-07-02T09:43:13Z",
+      "_id": "menuItem-braeloch-burger",
+      "_rev": "JyPHzVy4YBXWnHjU2YRGZK",
+      "_system": {
+        "base": {
+          "id": "menuItem-braeloch-burger",
+          "rev": "37hNSegHf4NtjSKr1jc7aQ"
+        }
+      },
+      "_type": "menuItem",
+      "_updatedAt": "2026-07-10T00:27:58Z",
+      "available": true,
+      "category": {
+        "_ref": "menuCategory-handhelds",
+        "_type": "reference"
+      },
+      "description": "lettuce, tomato, bacon, cheddar",
+      "name": "Braeloch Burger",
+      "order": 2
+    },
+    {
+      "_createdAt": "2026-07-02T09:43:13Z",
+      "_id": "menuItem-buffalo-chicken-flatbread",
+      "_rev": "kiD9Iu4HJOVfwklchHbrkx",
+      "_system": {
+        "base": {
+          "id": "menuItem-buffalo-chicken-flatbread",
+          "rev": "37hNSegHf4NtjSKr1jc7aQ"
+        }
+      },
+      "_type": "menuItem",
+      "_updatedAt": "2026-07-10T00:28:30Z",
+      "available": true,
+      "category": {
+        "_ref": "menuCategory-flatbreads",
+        "_type": "reference"
+      },
+      "description": "blue cheese crumble, mozzarella, buffalo sauce, scallions",
+      "name": "Buffalo Chicken",
+      "order": 3
+    },
+    {
+      "_createdAt": "2026-07-02T09:43:13Z",
+      "_id": "menuItem-caesar",
+      "_rev": "JyPHzVy4YBXWnHjU2Yb77W",
+      "_system": {
+        "base": {
+          "id": "menuItem-caesar",
+          "rev": "LeJgS4V95QilRSQVSE2gs2"
+        }
+      },
+      "_type": "menuItem",
+      "_updatedAt": "2026-07-10T01:29:15Z",
+      "available": true,
+      "category": {
+        "_ref": "menuCategory-salads",
+        "_type": "reference"
+      },
+      "description": "romaine, parmesan, croutons, caesar dressing",
+      "name": "Caesar",
+      "order": 1
+    },
+    {
+      "_createdAt": "2026-07-02T09:43:13Z",
+      "_id": "menuItem-cajun-shrimp-tacos",
+      "_rev": "LeJgS4V95QilRSQVSEIQIX",
+      "_system": {
+        "base": {
+          "id": "menuItem-cajun-shrimp-tacos",
+          "rev": "LeJgS4V95QilRSQVSEIJa2"
+        }
+      },
+      "_type": "menuItem",
+      "_updatedAt": "2026-07-10T01:26:53Z",
+      "available": true,
+      "category": {
+        "_ref": "menuCategory-tacos",
+        "_type": "reference"
+      },
+      "description": "lettuce, pico de gallo, avocado spread, sriracha-lime creama.  served on corn tortillas with tortilla chips.  substitute: fries $3 / salad $4",
+      "name": "Cajun Shrimp Tacos (2)",
+      "order": 1
+    },
+    {
+      "_createdAt": "2026-07-02T09:43:13Z",
+      "_id": "menuItem-cauliflower",
+      "_rev": "kiD9Iu4HJOVfwklchHc5Rj",
+      "_system": {
+        "base": {
+          "id": "menuItem-cauliflower",
+          "rev": "37hNSegHf4NtjSKr1jc7aQ"
+        }
+      },
+      "_type": "menuItem",
+      "_updatedAt": "2026-07-10T00:29:56Z",
+      "available": true,
+      "category": {
+        "_ref": "menuCategory-shareables",
+        "_type": "reference"
+      },
+      "description": "seasoned flour dredged florets, fried golden + tossed in buffalo sauce, scallions, ranch dressing for dipping'",
+      "dietaryTags": [
+        "V",
+        "VG"
+      ],
+      "name": "Cauliflower Bites",
+      "order": 2
+    },
+    {
+      "_createdAt": "2026-07-02T09:43:13Z",
+      "_id": "menuItem-cheesesteak-egg-rolls",
+      "_rev": "kiD9Iu4HJOVfwklchHc919",
+      "_system": {
+        "base": {
+          "id": "menuItem-cheesesteak-egg-rolls",
+          "rev": "37hNSegHf4NtjSKr1jc7aQ"
+        }
+      },
+      "_type": "menuItem",
+      "_updatedAt": "2026-07-10T00:30:09Z",
+      "available": true,
+      "category": {
+        "_ref": "menuCategory-shareables",
+        "_type": "reference"
+      },
+      "description": "sriracha ketchup",
+      "name": "Cheesesteak Egg Rolls",
+      "order": 8
+    },
+    {
+      "_createdAt": "2026-07-02T09:43:13Z",
+      "_id": "menuItem-chicken-tenders",
+      "_rev": "LeJgS4V95QilRSQVSE2v9X",
+      "_system": {
+        "base": {
+          "id": "menuItem-chicken-tenders",
+          "rev": "37hNSegHf4NtjSKr1jc7aQ"
+        }
+      },
+      "_type": "menuItem",
+      "_updatedAt": "2026-07-10T00:30:19Z",
+      "available": true,
+      "category": {
+        "_ref": "menuCategory-shareables",
+        "_type": "reference"
+      },
+      "description": "fries, honey mustard",
+      "name": "Chicken Tenders (3)",
+      "order": 7
+    },
+    {
+      "_createdAt": "2026-07-02T09:43:13Z",
+      "_id": "menuItem-garden",
+      "_rev": "JyPHzVy4YBXWnHjU2YRaLS",
+      "_system": {
+        "base": {
+          "id": "menuItem-garden",
+          "rev": "37hNSegHf4NtjSKr1jc7aQ"
+        }
+      },
+      "_type": "menuItem",
+      "_updatedAt": "2026-07-10T00:30:50Z",
+      "available": true,
+      "category": {
+        "_ref": "menuCategory-salads",
+        "_type": "reference"
+      },
+      "description": "romaine, cucumber, carrot, tomato, croutons, choice of dressing on side",
+      "dietaryTags": [
+        "V"
+      ],
+      "name": "Garden",
+      "order": 3
+    },
+    {
+      "_createdAt": "2026-07-02T09:43:13Z",
+      "_id": "menuItem-garlic-parmesan-fries",
+      "_rev": "LeJgS4V95QilRSQVSE38hX",
+      "_system": {
+        "base": {
+          "id": "menuItem-garlic-parmesan-fries",
+          "rev": "37hNSegHf4NtjSKr1jc7aQ"
+        }
+      },
+      "_type": "menuItem",
+      "_updatedAt": "2026-07-10T00:31:05Z",
+      "available": true,
+      "category": {
+        "_ref": "menuCategory-frittes",
+        "_type": "reference"
+      },
+      "description": "ranch dressing",
+      "dietaryTags": [
+        "V"
+      ],
+      "name": "Garlic Parmesan Fries",
+      "order": 2
+    },
+    {
+      "_createdAt": "2026-07-02T09:43:13Z",
+      "_id": "menuItem-grilled-bratwurst",
+      "_rev": "kiD9Iu4HJOVfwklchHcfyf",
+      "_system": {
+        "base": {
+          "id": "menuItem-grilled-bratwurst",
+          "rev": "37hNSegHf4NtjSKr1jc7aQ"
+        }
+      },
+      "_type": "menuItem",
+      "_updatedAt": "2026-07-10T00:31:27Z",
+      "available": false,
+      "category": {
+        "_ref": "menuCategory-handhelds",
+        "_type": "reference"
+      },
+      "description": "Coleslaw, country mustard, pretzel bun",
+      "name": "Grilled Bratwurst",
+      "order": 1
+    },
+    {
+      "_createdAt": "2026-07-02T09:43:13Z",
+      "_id": "menuItem-grilled-chicken-blt",
+      "_rev": "kiD9Iu4HJOVfwklchHcjOr",
+      "_system": {
+        "base": {
+          "id": "menuItem-grilled-chicken-blt",
+          "rev": "37hNSegHf4NtjSKr1jc7aQ"
+        }
+      },
+      "_type": "menuItem",
+      "_updatedAt": "2026-07-10T00:31:53Z",
+      "available": true,
+      "category": {
+        "_ref": "menuCategory-handhelds",
+        "_type": "reference"
+      },
+      "description": "lettuce, tomato, bacon, roasted garlic aioli",
+      "name": "Grilled Chicken BLT",
+      "order": 5
+    },
+    {
+      "_createdAt": "2026-07-02T09:43:13Z",
+      "_id": "menuItem-hummus",
+      "_rev": "kiD9Iu4HJOVfwklchHcoyp",
+      "_system": {
+        "base": {
+          "id": "menuItem-hummus",
+          "rev": "37hNSegHf4NtjSKr1jc7aQ"
+        }
+      },
+      "_type": "menuItem",
+      "_updatedAt": "2026-07-10T00:32:28Z",
+      "available": true,
+      "category": {
+        "_ref": "menuCategory-shareables",
+        "_type": "reference"
+      },
+      "description": "basil oil, paprika, crudité, toasted flatbread",
+      "dietaryTags": [
+        "V",
+        "VG"
+      ],
+      "name": "Hummus",
+      "order": 1
+    },
+    {
+      "_createdAt": "2026-07-02T09:43:13Z",
+      "_id": "menuItem-ice-cream",
+      "_rev": "37hNSegHf4NtjSKr1jc7aQ",
+      "_type": "menuItem",
+      "_updatedAt": "2026-07-02T09:43:13Z",
+      "available": true,
+      "category": {
+        "_ref": "menuCategory-desserts",
+        "_type": "reference"
+      },
+      "description": "La Michoacana creamsicles — various flavors",
+      "dietaryTags": [
+        "V"
+      ],
+      "name": "Ice Cream",
+      "order": 1
+    },
+    {
+      "_createdAt": "2026-07-02T09:43:13Z",
+      "_id": "menuItem-jumbo-bavarian-pretzel",
+      "_rev": "JyPHzVy4YBXWnHjU2YRgpO",
+      "_system": {
+        "base": {
+          "id": "menuItem-jumbo-bavarian-pretzel",
+          "rev": "37hNSegHf4NtjSKr1jc7aQ"
+        }
+      },
+      "_type": "menuItem",
+      "_updatedAt": "2026-07-10T00:32:47Z",
+      "available": true,
+      "category": {
+        "_ref": "menuCategory-shareables",
+        "_type": "reference"
+      },
+      "description": "honey mustard, beer cheese",
+      "dietaryTags": [
+        "V"
+      ],
+      "name": "Jumbo Bavarian Pretzel",
+      "order": 3
+    },
+    {
+      "_createdAt": "2026-07-02T09:43:13Z",
+      "_id": "menuItem-kennett-burger",
+      "_rev": "kiD9Iu4HJOVfwklchHd32f",
+      "_system": {
+        "base": {
+          "id": "menuItem-kennett-burger",
+          "rev": "37hNSegHf4NtjSKr1jc7aQ"
+        }
+      },
+      "_type": "menuItem",
+      "_updatedAt": "2026-07-10T00:34:44Z",
+      "available": true,
+      "category": {
+        "_ref": "menuCategory-handhelds",
+        "_type": "reference"
+      },
+      "description": "sautéed mushrooms, caramelized onions, Swiss",
+      "name": "Kennett Burger",
+      "order": 3
+    },
+    {
+      "_createdAt": "2026-07-02T09:43:13Z",
+      "_id": "menuItem-kids-cheddar-burger",
+      "_rev": "JyPHzVy4YBXWnHjU2YRmMc",
+      "_system": {
+        "base": {
+          "id": "menuItem-kids-cheddar-burger",
+          "rev": "37hNSegHf4NtjSKr1jc7aQ"
+        }
+      },
+      "_type": "menuItem",
+      "_updatedAt": "2026-07-10T00:34:30Z",
+      "available": true,
+      "category": {
+        "_ref": "menuCategory-kids",
+        "_type": "reference"
+      },
+      "description": "fries",
+      "name": "Cheddar Burger",
+      "order": 2
+    },
+    {
+      "_createdAt": "2026-07-02T09:43:13Z",
+      "_id": "menuItem-kids-mac-and-cheese",
+      "_rev": "LeJgS4V95QilRSQVSE3OxX",
+      "_system": {
+        "base": {
+          "id": "menuItem-kids-mac-and-cheese",
+          "rev": "37hNSegHf4NtjSKr1jc7aQ"
+        }
+      },
+      "_type": "menuItem",
+      "_updatedAt": "2026-07-10T00:33:48Z",
+      "available": true,
+      "category": {
+        "_ref": "menuCategory-kids",
+        "_type": "reference"
+      },
+      "description": "elbow pasta, cheddar + Monterey Jack",
+      "dietaryTags": [
+        "V"
+      ],
+      "name": "Mac & Cheese",
+      "order": 1
+    },
+    {
+      "_createdAt": "2026-07-02T09:43:13Z",
+      "_id": "menuItem-mac-and-cheese",
+      "_rev": "kiD9Iu4HJOVfwklchHdWeb",
+      "_system": {
+        "base": {
+          "id": "menuItem-mac-and-cheese",
+          "rev": "37hNSegHf4NtjSKr1jc7aQ"
+        }
+      },
+      "_type": "menuItem",
+      "_updatedAt": "2026-07-10T00:37:42Z",
+      "available": true,
+      "category": {
+        "_ref": "menuCategory-shareables",
+        "_type": "reference"
+      },
+      "description": "elbow pasta, cheddar + Monterey Jack.  Add-ons: chicken / bacon",
+      "dietaryTags": [
+        "V"
+      ],
+      "name": "Mac & Cheese",
+      "order": 4
+    },
+    {
+      "_createdAt": "2026-07-02T09:43:13Z",
+      "_id": "menuItem-margherita",
+      "_rev": "kiD9Iu4HJOVfwklchHdMJP",
+      "_system": {
+        "base": {
+          "id": "menuItem-margherita",
+          "rev": "37hNSegHf4NtjSKr1jc7aQ"
+        }
+      },
+      "_type": "menuItem",
+      "_updatedAt": "2026-07-10T00:36:28Z",
+      "available": true,
+      "category": {
+        "_ref": "menuCategory-flatbreads",
+        "_type": "reference"
+      },
+      "description": "mozzarella, tomato sauce, basil oil, parmesan",
+      "dietaryTags": [
+        "V"
+      ],
+      "name": "Margherita",
+      "order": 1
+    },
+    {
+      "_createdAt": "2026-07-02T09:43:13Z",
+      "_id": "menuItem-mushroom-flatbread",
+      "_rev": "kiD9Iu4HJOVfwklchHdTtv",
+      "_system": {
+        "base": {
+          "id": "menuItem-mushroom-flatbread",
+          "rev": "37hNSegHf4NtjSKr1jc7aQ"
+        }
+      },
+      "_type": "menuItem",
+      "_updatedAt": "2026-07-10T00:37:19Z",
+      "available": true,
+      "category": {
+        "_ref": "menuCategory-flatbreads",
+        "_type": "reference"
+      },
+      "description": "roasted garlic + mushrooms, sautéed spinach, white onion, Monterey Jack",
+      "dietaryTags": [
+        "V"
+      ],
+      "name": "Mushroom + Spinach",
+      "order": 2
+    },
+    {
+      "_createdAt": "2026-07-02T09:43:13Z",
+      "_id": "menuItem-nachos",
+      "_rev": "LeJgS4V95QilRSQVSE3seX",
+      "_system": {
+        "base": {
+          "id": "menuItem-nachos",
+          "rev": "37hNSegHf4NtjSKr1jc7aQ"
+        }
+      },
+      "_type": "menuItem",
+      "_updatedAt": "2026-07-10T00:38:23Z",
+      "available": true,
+      "category": {
+        "_ref": "menuCategory-shareables",
+        "_type": "reference"
+      },
+      "description": "corn tortillas, cheddar-jack, pico de gallo, scallions, sour cream.  Add-ons: chicken / bacon / smashed avocado",
+      "dietaryTags": [
+        "V"
+      ],
+      "name": "Nachos",
+      "order": 6
+    },
+    {
+      "_createdAt": "2026-07-02T09:43:13Z",
+      "_id": "menuItem-pound-of-wings",
+      "_rev": "JyPHzVy4YBXWnHjU2YS3Ic",
+      "_system": {
+        "base": {
+          "id": "menuItem-pound-of-wings",
+          "rev": "37hNSegHf4NtjSKr1jc7aQ"
+        }
+      },
+      "_type": "menuItem",
+      "_updatedAt": "2026-07-10T00:39:06Z",
+      "available": true,
+      "category": {
+        "_ref": "menuCategory-shareables",
+        "_type": "reference"
+      },
+      "description": "buffalo, bbq, sweet thai chili, Old Bay — carrots, celery + blue cheese or ranch dressing",
+      "name": "Pound of Wings",
+      "order": 5
+    },
+    {
+      "_createdAt": "2026-07-02T09:43:13Z",
+      "_id": "menuItem-simple-fries",
+      "_rev": "LeJgS4V95QilRSQVSEIe4X",
+      "_system": {
+        "base": {
+          "id": "menuItem-simple-fries",
+          "rev": "37hNSegHf4NtjSKr1jc7aQ"
+        }
+      },
+      "_type": "menuItem",
+      "_updatedAt": "2026-07-10T01:27:54Z",
+      "available": true,
+      "category": {
+        "_ref": "menuCategory-frittes",
+        "_type": "reference"
+      },
+      "description": "malt vinegar aioli",
+      "dietaryTags": [
+        "V"
+      ],
+      "name": "Simple Fries",
+      "order": 1
+    },
+    {
+      "_createdAt": "2026-07-02T09:43:13Z",
+      "_id": "menuItem-spinach-beet",
+      "_rev": "kiD9Iu4HJOVfwklchHdp1z",
+      "_system": {
+        "base": {
+          "id": "menuItem-spinach-beet",
+          "rev": "37hNSegHf4NtjSKr1jc7aQ"
+        }
+      },
+      "_type": "menuItem",
+      "_updatedAt": "2026-07-10T00:39:37Z",
+      "available": true,
+      "category": {
+        "_ref": "menuCategory-salads",
+        "_type": "reference"
+      },
+      "description": "spring mix, cucumber, red onion, cherry tomato, lemon olive oil dressing",
+      "dietaryTags": [
+        "V"
+      ],
+      "name": "Brewery",
+      "order": 2
+    }
+  ]
+}
