@@ -238,7 +238,24 @@ Content migration, redirects from old URLs, QA on real devices, analytics, DNS c
 plan, Sanity env vars set for prod+preview, all routes + live menu/events verified in prod).
 ✅ Sanity CORS for the prod URL added; `/studio` works deployed (employee invited 2026-07-09).
 
-**DNS-cutover day checklist (one sitting, decided 2026-07-09):**
+## 🚀 LAUNCHED 2026-08-14 — https://braelochbrewing.beer
+
+DNS cut over from Squarespace to Vercel. Apex `A → 76.76.21.21`, `www CNAME →
+cname.vercel-dns.com`; the four Google MX + SPF records were left untouched and verified
+intact after the change. `www` cert needed an explicit `vercel certs issue` (automatic
+issuance didn't fire); both hosts now serve valid SSL. Vercel upgraded to Pro. Resend
+verified on `braelochbrewing.beer` (DKIM at apex, SPF/MX scoped to the `send.` subdomain so
+Google Workspace mail is unaffected) — live test delivered to Kim + Mike from
+`inquiries@braelochbrewing.beer`. Squarespace website subscription cancelled, ends
+2026-08-26 (domain registration retained, renews 2028).
+
+**Post-launch remaining:** Sanity CORS for the real domain (so `/studio` works at
+braelochbrewing.beer for Mike + Kim), Google Search Console sitemap submission, photo
+credit for Danny Ball, Instagram strip + newsletter (deferred Phase 3).
+
+---
+
+**DNS-cutover day checklist (completed 2026-08-14):**
 1. Point `braelochbrewing.beer` at Vercel (add domain in Vercel project → set records at DNS host).
 2. Create Resend account + verify domain (add DKIM/SPF records in the same DNS session) →
    set `RESEND_API_KEY` in `.env.local` + Vercel. `INQUIRY_ALERT_TO=Kim@braelochbrewing.beer`
