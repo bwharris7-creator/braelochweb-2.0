@@ -1,16 +1,10 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import EventList from "@/components/EventList";
 import PageHero from "@/components/PageHero";
 import { site } from "@/lib/site";
-import {
-  eventsJsonLd,
-  fmtEventDate,
-  fmtEventTime,
-  getUpcomingEvents,
-  type EventInstance,
-  type EventKind,
-} from "@/lib/events";
+import { eventsJsonLd, getUpcomingEvents, toEventCard } from "@/lib/events";
 
 export const metadata: Metadata = {
   title: "Events — Live Music & More",
@@ -22,13 +16,6 @@ export const metadata: Metadata = {
  * revalidated hourly. Staff keep updating the calendar exactly as before;
  * this page keeps up on its own.
  */
-
-const kindColor: Record<EventKind, string> = {
-  "Live Music": "bg-gold/15 text-gold-dark",
-  Community: "bg-loch/20 text-forest",
-  "Off-Site": "bg-brick/15 text-brick",
-  Event: "bg-forest/10 text-forest",
-};
 
 function SourceUnavailable() {
   return (
@@ -52,31 +39,8 @@ function SourceUnavailable() {
   );
 }
 
-function FeaturedEvent({ e }: { e: EventInstance }) {
-  return (
-    <div className="rounded-xl bg-forest p-8 text-cream shadow-hero sm:flex sm:items-center sm:justify-between sm:gap-6">
-      <div className="min-w-0">
-        <p className="text-sm font-semibold uppercase tracking-widest text-gold">
-          {fmtEventDate(e)} · {fmtEventTime(e)}
-        </p>
-        <h3 className="mt-2 font-display text-3xl font-bold">{e.title}</h3>
-        {e.description && (
-          <p className="mt-3 line-clamp-2 max-w-xl whitespace-pre-line text-cream/80">
-            {e.description}
-          </p>
-        )}
-      </div>
-      <span className="mt-4 inline-block shrink-0 rounded-full bg-gold px-4 py-1.5 text-sm font-semibold text-forest sm:mt-0">
-        {e.kind}
-      </span>
-    </div>
-  );
-}
-
 export default async function EventsPage() {
   const events = await getUpcomingEvents(30);
-  const featured = events?.[0];
-  const rest = events?.slice(1) ?? [];
 
   return (
     <>
@@ -119,37 +83,7 @@ export default async function EventsPage() {
             </p>
           </div>
         ) : (
-          <>
-            <h2 className="font-display text-2xl font-bold text-forest">Up Next</h2>
-            <div className="mt-4">{featured && <FeaturedEvent e={featured} />}</div>
-
-            {rest.length > 0 && (
-              <>
-                <h2 className="mt-12 font-display text-2xl font-bold text-forest">Coming Up</h2>
-                <div className="mt-4 divide-y divide-cream-dark overflow-hidden rounded-xl bg-white shadow-card">
-                  {rest.map((e) => (
-                    <div key={e.id} className="flex flex-wrap items-center gap-3 px-6 py-4 sm:gap-6">
-                      <div className="w-28 shrink-0">
-                        <p className="font-semibold text-charcoal">{fmtEventDate(e)}</p>
-                        <p className="text-sm text-charcoal/60">{fmtEventTime(e)}</p>
-                      </div>
-                      <div className="min-w-0 flex-1">
-                        <p className="font-medium text-charcoal">{e.title}</p>
-                        {e.location && (
-                          <p className="truncate text-sm text-charcoal/50">{e.location}</p>
-                        )}
-                      </div>
-                      <span
-                        className={`rounded-full px-3 py-1 text-xs font-semibold ${kindColor[e.kind]}`}
-                      >
-                        {e.kind}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </>
-            )}
-          </>
+          <EventList events={events.map(toEventCard)} />
         )}
       </section>
 
@@ -169,17 +103,17 @@ export default async function EventsPage() {
               Private Events
             </p>
             <h2 className="mt-3 font-display text-3xl font-bold sm:text-4xl">
-              A massive rustic space for your thing
+              Hosting something? We&rsquo;ve got the room.
             </h2>
             <p className="mt-4 text-lg text-cream/90">
-              Birthdays, corporate events, weddings — the taproom, mezzanine, and beer garden can
-              host groups from a dozen to a few hundred.
+              Birthdays, showers, team outings, rehearsal dinners — book the Bowling Alley Room,
+              a corner of the Tap Room, or Creekside for parties from 10 to 100+ guests.
             </p>
             <Link
               href="/private-events"
               className="mt-8 inline-block rounded-md bg-gold px-8 py-3 font-semibold text-forest transition-all hover:-translate-y-1 hover:bg-gold-dark hover:shadow-card-hover"
             >
-              Start an Inquiry
+              Book Your Event
             </Link>
           </div>
         </div>

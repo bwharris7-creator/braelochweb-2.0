@@ -45,6 +45,7 @@ export interface EventInstance {
   image: string | null;
   location: string | null;
   link: string | null;
+  linkText: string | null;
   kind: EventKind;
 }
 
@@ -82,6 +83,7 @@ function expand(raw: RawCNEvent): EventInstance[] {
     image: raw.media || null,
     location: raw.location || null,
     link: raw.link || null,
+    linkText: raw.linkText?.trim() || null,
     kind: classify(raw.title, raw.location || null),
   };
 
@@ -90,7 +92,7 @@ function expand(raw: RawCNEvent): EventInstance[] {
 
   return Array.from({ length: count }, (_, i) => ({
     ...base,
-    id: count > 1 ? `${raw.id}:${i}` : raw.id,
+    id: count > 1 ? `${raw.id}-${i}` : raw.id,
     start: new Date(start.getTime() + i * (step ?? 0)),
     end: end && !isNaN(end.getTime()) ? new Date(end.getTime() + i * (step ?? 0)) : null,
   }));
@@ -165,6 +167,76 @@ export function fmtEventTime(e: EventInstance): string {
   const end = clean(fmt.format(e.end));
   return end === start ? start : `${start}–${end}`;
 }
+
+export function fmtEventLongDate(e: EventInstance): string {
+  return new Intl.DateTimeFormat("en-US", {
+    timeZone: site.timezone,
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  }).format(e.start);
+}
+
+/** YYYYMMDD in brewery time (all-day calendar entries). */
+function ymdET(d: Date): string {
+  return new Intl.DateTimeFormat("en-CA", { timeZone: site.timezone }).format(d).replaceAll("-", "");
+}
+
+/** Google Calendar "add event" link (mirrors the widget's Add to Calendar). */
+function googleCalendarUrl(e: EventInstance): string {
+  const utc = (d: Date) => d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+  const dates = e.allDay
+    ? `${ymdET(e.start)}/${ymdET(new Date(e.start.getTime() + STEP_MS.daily))}`
+    : `${utc(e.start)}/${utc(e.end ?? new Date(e.start.getTime() + 2 * 60 * 60 * 1000))}`;
+  const params = new URLSearchParams({
+    action: "TEMPLATE",
+    text: e.title,
+    dates,
+    details: e.description,
+    location: e.location || `${site.name}, ${site.address.street}, ${site.address.city}, ${site.address.state}`,
+  });
+  return `https://calendar.google.com/calendar/render?${params}`;
+}
+
+/**
+ * Plain, serializable event for client components (the event detail popup).
+ * Dates are pre-formatted on the server so they're always in brewery time.
+ */
+export interface EventCard {
+  id: string;
+  title: string;
+  description: string;
+  date: string;
+  longDate: string;
+  time: string;
+  image: string | null;
+  location: string | null;
+  link: string | null;
+  linkText: string | null;
+  kind: EventKind;
+  googleCalendarUrl: string;
+}
+
+export function toEventCard(e: EventInstance): EventCard {
+  return {
+    id: e.id,
+    title: e.title,
+    description: e.description.trim(),
+    date: fmtEventDate(e),
+    longDate: fmtEventLongDate(e),
+    time: fmtEventTime(e),
+    image: e.image,
+    location: e.location,
+    link: e.link,
+    linkText: e.linkText,
+    kind: e.kind,
+    googleCalendarUrl: googleCalendarUrl(e),
+  };
+}
+
+/** Deep link that opens an event's popup on /events. */
+export const eventHref = (id: string) => `/events#event-${id}`;
 
 /** schema.org Event JSON-LD for SEO (PLAN.md §6). */
 export function eventsJsonLd(events: EventInstance[]) {

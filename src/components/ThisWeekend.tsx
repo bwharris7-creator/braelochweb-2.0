@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { fmtEventDate, fmtEventTime, getThisWeekend, getUpcomingEvents } from "@/lib/events";
+import { eventHref, fmtEventDate, fmtEventTime, getThisWeekend, getUpcomingEvents } from "@/lib/events";
 
 /**
  * Homepage "This Weekend" module (PLAN.md §4) — live from the events
@@ -36,14 +36,16 @@ export default async function ThisWeekend() {
       ) : (
         <ul className="mt-5 space-y-4">
           {events.slice(0, 3).map((e) => (
-            <li key={e.id} className="flex items-baseline gap-4">
-              <span className="w-24 shrink-0 text-sm font-semibold uppercase tracking-wide text-gold">
-                {fmtEventDate(e)}
-              </span>
-              <span className="min-w-0">
-                <span className="block truncate font-medium">{e.title}</span>
-                <span className="text-sm text-cream/60">{fmtEventTime(e)}</span>
-              </span>
+            <li key={e.id}>
+              <Link href={eventHref(e.id)} className="group flex items-baseline gap-4">
+                <span className="w-24 shrink-0 text-sm font-semibold uppercase tracking-wide text-gold">
+                  {fmtEventDate(e)}
+                </span>
+                <span className="min-w-0">
+                  <span className="block truncate font-medium group-hover:text-gold">{e.title}</span>
+                  <span className="text-sm text-cream/60">{fmtEventTime(e)}</span>
+                </span>
+              </Link>
             </li>
           ))}
         </ul>
